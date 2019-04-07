@@ -9,6 +9,7 @@ import {CheckboxGroupField} from "./form/field/checkbox/checkbox-group.component
 import {DateField} from "./form/field/date/date-field.component";
 import {FieldListField} from "./form/field/fieldList/field-list-field.component";
 import {FileUploadField} from "./form/field/file-upload/file-upload.component";
+import {Toggle} from "./form/field/toggle/toggle.component";
 import {FormField} from "./form/field/form-field";
 import {LabelField} from "./form/field/label/label-field.component";
 import {NumberField} from "./form/field/number/number-field.component";
@@ -764,6 +765,12 @@ export abstract class PathAppComponent implements IPathApp {
             case "fileUpload": {
                 formField = new FileUploadField(form, this.translationService);
                 formField.fromJson(modelFormField);
+                break;
+            }
+            case "Toggle": {
+                const toggle = new Toggle(form, this.translationService);
+                toggle.fromJson(modelFormField);
+                formField = toggle;
                 break;
             }
             default: {

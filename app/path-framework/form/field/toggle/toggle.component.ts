@@ -1,0 +1,20 @@
+import {Component, Input, Output} from "@angular/core";
+import {ValueField} from "../value-field";
+
+@Component({
+    selector: "path-toggle",
+    templateUrl: "toggle.component.html"
+})
+export class ToggleComponent {
+    @Input("field")
+    @Output("field")
+    field: Toggle;
+}
+
+export class Toggle extends ValueField<number> {
+
+
+}
+
+
+
