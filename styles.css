@@ -452,3 +452,64 @@ h3, .h3, h4, .h4, h5, .h5 {
 .tile.tile-success {
     background-color: #2ecc71;
 }
+/* Bachelor Arbeit Matthias Urech */
+/*----Toggle----*/
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    margin-left: 15px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 90%;
+    width: 50%;
+    top: 5%;
+    left: 5%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .toggle {
+    background-color: #339933;
+}
+
+input:focus + .toggle {
+    box-shadow: 0 0 1px #339933;
+}
+
+input:checked + .toggle:before {
+    -webkit-transform: translateX(78%);
+    -ms-transform: translateX(78%);
+    transform: translateX(78%);
+}
+
+.toggle.round {
+    border-radius: 34px;
+}
+
+.toggle.round:before {
+    border-radius: 50%;
+}
