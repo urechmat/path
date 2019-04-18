@@ -40,9 +40,6 @@
 					<div *ngIf="field.type == 'fileUpload'">
 						<path-file-upload [field]="field"></path-file-upload>
 					</div>
-					<div *ngIf="field.type == 'Table'">
-						<path-table [field]="field"></path-table>
-					</div>
 				</div>
 			</div>
 			<!-- show form buttons on modal-body in mobile version, otherwise they are taking up too much space when the keyboard is shown -->

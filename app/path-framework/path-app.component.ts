@@ -39,7 +39,6 @@ import {PathService} from "./service/path.service";
 import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
-import {Table} from "./form/field/table/table.component";
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -765,12 +764,6 @@ export abstract class PathAppComponent implements IPathApp {
             case "fileUpload": {
                 formField = new FileUploadField(form, this.translationService);
                 formField.fromJson(modelFormField);
-                break;
-            }
-            case "Table": {
-                const table = new Table(form, this.translationService);
-                table.fromJson(modelFormField);
-                formField = table;
                 break;
             }
             default: {

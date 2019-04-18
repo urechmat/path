@@ -1,6 +1,5 @@
 import {NgModule, ModuleWithProviders, Injector} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -32,8 +31,6 @@ import {CustomDirective} from "./path-framework/page/element/custom/custom.direc
 import {CustomContainerComponent} from "./path-framework/page/element/custom/custom-container.component";
 import {ElementListComponent} from "./path-framework/page/element/element-list/element-list.component";
 import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/breadcrumb.component";
-import {TableComponent} from "./path-framework/form/field/table/table.component";
-import {TableModule} from "primeng/table";
 
 @NgModule({
     imports:      [
@@ -41,8 +38,6 @@ import {TableModule} from "primeng/table";
         HttpClientModule,
         FormsModule,
         CommonModule,
-        TableModule,
-        BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
     ],
@@ -72,8 +67,7 @@ import {TableModule} from "primeng/table";
         ElementListComponent,
         ButtonGroupComponent,
         BreadcrumbComponent,
-        FileUploadComponent,
-        TableComponent
+        FileUploadComponent
     ],
     exports:      [
         DraggableDirective,
@@ -107,8 +101,7 @@ import {TableModule} from "primeng/table";
         ElementListComponent,
         ButtonGroupComponent,
         BreadcrumbComponent,
-        FileUploadComponent,
-        TableComponent
+        FileUploadComponent
     ],
 })
 export class AppModule {
