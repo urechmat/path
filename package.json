@@ -59,7 +59,10 @@
     "ngx-bootstrap": "3.0.1",
     "reflect-metadata": "0.1.10",
     "rxjs": "6.3.3",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "@angular/animations": "7.2.13",
+    "primeng": "7.0.0",
+    "primeicons": "1.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.8.7",

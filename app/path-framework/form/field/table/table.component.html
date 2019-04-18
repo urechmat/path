@@ -1,0 +1,20 @@
+<path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
+<div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
+    <p-table [value]="field.entries">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let header of field.listOfHeader">{{header.name}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tableEntry>
+            <tr>
+                <td *ngFor="let header of field.listOfHeader">
+                    {{tableEntry[header.key]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
