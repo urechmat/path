@@ -1,6 +1,7 @@
 import {Component, Input, Output} from "@angular/core";
 import {ValueField} from "../value-field";
-import {CheckboxGroupEntry} from "../checkbox/checkbox-group.component";
+import {TableEntry} from "./TableEntry";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: "path-table",
@@ -17,6 +18,36 @@ export class Table extends ValueField<number> {
     private _listOfHeader: any[] = [];
 
     private _entries: TableEntry[] = [];
+    private _selectedEntries: TableEntry[] = [];
+
+    private _selectedEntry: TableEntry;
+    newEntry: boolean;
+
+    private _tableEntry: TableEntry;
+
+    get selectedEntries(): TableEntry[] {
+        return this._selectedEntries;
+    }
+
+    set selectedEntries(value: TableEntry[]) {
+        this._selectedEntries = value;
+    }
+
+    get tableEntry(): TableEntry {
+        return this._tableEntry;
+    }
+
+    set tableEntry(value: TableEntry) {
+        this._tableEntry = value;
+    }
+
+    get selectedEntry(): TableEntry {
+        return this._selectedEntry;
+    }
+
+    set selectedEntry(value: TableEntry) {
+        this._selectedEntry = value;
+    }
 
     get entries(): TableEntry[] {
         return this._entries;
@@ -51,7 +82,7 @@ export class Table extends ValueField<number> {
             this._listOfData = modelFormField["row"];
         }
         for (const entryModel of modelFormField["row"]) {
-            const entry = new TableEntry();
+            const entry = new TableEntry(this.getForm(), this.translationService);
             entry.col1 = entryModel.col1;
             entry.col2 = entryModel.col2;
             entry.col3 = entryModel.col3;
@@ -61,54 +92,48 @@ export class Table extends ValueField<number> {
         }
     }
 
-}
-
-
-export class TableEntry {
-    private _col1: any;
-    private _col2: any;
-    private _col3: any;
-    private _col4: any;
-    private _col5: any;
-
-    get col1(): any {
-        return this._col1;
+    public onRowSelect(event) {
+        this.newEntry = false;
+        this._tableEntry = this.cloneEntry(event.data);
     }
 
-    set col1(value: any) {
-        this._col1 = value;
+    public cloneEntry(e: TableEntry): TableEntry {
+        const tableEntry = new TableEntry(this.getForm(), this.translationService);
+        tableEntry.col1 = e.col1;
+        tableEntry.col2 = e.col2;
+        tableEntry.col3 = e.col3;
+        tableEntry.col4 = e.col4;
+        tableEntry.col5 = e.col5;
+        return tableEntry;
     }
 
-    get col2(): any {
-        return this._col2;
+    public delete() {
+        for (const e of this.selectedEntries) {
+            const index = this.entries.indexOf(e);
+            this.entries = this.entries.filter((val, i) => i !== index);
+            this.tableEntry = null;
+        }
     }
+    public addRow() {
+        const newTableEntry = new TableEntry(this.getForm(), this.translationService);
+        newTableEntry.col1 = "Click to edit";
+        newTableEntry.col2 = "Click to edit";
+        newTableEntry.col3 = "Click to edit";
+        newTableEntry.col4 = "Click to edit";
+        newTableEntry.col5 = "Click to edit";
+        this._entries.push(newTableEntry);
+    }
+    /*
+        public delete() {
+            const index = this.cars.indexOf(this.selectedEntry);
+            this.entries = this.entries.filter((val, i) => i !== index);
+        }
 
-    set col2(value: any) {
-        this._col2 = value;
-    }
-
-    get col3(): any {
-        return this._col3;
-    }
-
-    set col3(value: any) {
-        this._col3 = value;
-    }
-
-    get col4(): any {
-        return this._col4;
-    }
-
-    set col4(value: any) {
-        this._col4 = value;
-    }
-
-    get col5(): any {
-        return this._col5;
-    }
-
-    set col5(value: any) {
-        this._col5 = value;
-    }
+        delete() {
+            let index = this.cars.indexOf(this.selectedCar);
+            this.cars = this.cars.filter((val, i) => i != index);
+            this.car = null;
+            this.displayDialog = false;
+        }**/
 }
 

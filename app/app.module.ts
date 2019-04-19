@@ -33,6 +33,7 @@ import {ElementListComponent} from "./path-framework/page/element/element-list/e
 import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/breadcrumb.component";
 import {TableComponent} from "./path-framework/form/field/table/table.component";
 import {TableModule} from "primeng/table";
+import {ButtonModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -42,6 +43,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         FormsModule,
         CommonModule,
         TableModule,
+        ButtonModule,
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
