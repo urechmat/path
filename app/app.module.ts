@@ -31,6 +31,9 @@ import {CustomDirective} from "./path-framework/page/element/custom/custom.direc
 import {CustomContainerComponent} from "./path-framework/page/element/custom/custom-container.component";
 import {ElementListComponent} from "./path-framework/page/element/element-list/element-list.component";
 import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/breadcrumb.component";
+import {TableComponent} from "./path-framework/form/field/table/table.component";
+import {TableModule} from "primeng/table";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     imports:      [
@@ -38,6 +41,8 @@ import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/brea
         HttpClientModule,
         FormsModule,
         CommonModule,
+        TableModule,
+        BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
     ],
@@ -67,7 +72,8 @@ import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/brea
         ElementListComponent,
         ButtonGroupComponent,
         BreadcrumbComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        TableComponent
     ],
     exports:      [
         DraggableDirective,
@@ -101,7 +107,8 @@ import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/brea
         ElementListComponent,
         ButtonGroupComponent,
         BreadcrumbComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        TableComponent
     ],
 })
 export class AppModule {
