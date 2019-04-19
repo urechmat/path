@@ -18,8 +18,8 @@ import {LabelFieldComponent} from "./path-framework/form/field/label/label-field
 import {FieldListFieldComponent} from "./path-framework/form/field/fieldList/field-list-field.component";
 import {NumberFieldComponent} from "./path-framework/form/field/number/number-field.component";
 import {TranslationFieldComponent} from "./path-framework/form/field/translation/translation-field.component";
-import {BsDatepickerModule} from "ngx-bootstrap/datepicker/bs-datepicker.module";
-import {TooltipModule} from "ngx-bootstrap/tooltip/tooltip.module";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {DraggableDirective} from "./path-framework/form/draggable.directive";
 import {BackButtonComponent} from "./path-framework/page/element/button/back-button.component";
 import {LinkButtonComponent} from "./path-framework/page/element/button/link-button.component";
