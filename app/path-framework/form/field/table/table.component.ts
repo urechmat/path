@@ -1,7 +1,6 @@
 import {Component, Input, Output} from "@angular/core";
 import {ValueField} from "../value-field";
-import {TableEntry} from "./TableEntry";
-import {forEach} from "@angular/router/src/utils/collection";
+import {TableEntry} from "./tableEntry";
 
 @Component({
     selector: "path-table",
@@ -13,17 +12,35 @@ export class TableComponent {
     field: Table;
 }
 
-export class Table extends ValueField<number> {
+export class Table extends ValueField<any> {
     private _listOfData: any[] = [];
     private _listOfHeader: any[] = [];
 
     private _entries: TableEntry[] = [];
     private _selectedEntries: TableEntry[] = [];
 
-    private _selectedEntry: TableEntry;
-    newEntry: boolean;
+    private i = 0;
 
     private _tableEntry: TableEntry;
+
+    private _title: string;
+    private _readString: string;
+
+    get readString(): string {
+        return this._readString;
+    }
+
+    set readString(value: string) {
+        this._readString = value;
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    set title(value: string) {
+        this._title = value;
+    }
 
     get selectedEntries(): TableEntry[] {
         return this._selectedEntries;
@@ -39,14 +56,6 @@ export class Table extends ValueField<number> {
 
     set tableEntry(value: TableEntry) {
         this._tableEntry = value;
-    }
-
-    get selectedEntry(): TableEntry {
-        return this._selectedEntry;
-    }
-
-    set selectedEntry(value: TableEntry) {
-        this._selectedEntry = value;
     }
 
     get entries(): TableEntry[] {
@@ -90,21 +99,12 @@ export class Table extends ValueField<number> {
             entry.col5 = entryModel.col5;
             this._entries.push(entry);
         }
-    }
-
-    public onRowSelect(event) {
-        this.newEntry = false;
-        this._tableEntry = this.cloneEntry(event.data);
-    }
-
-    public cloneEntry(e: TableEntry): TableEntry {
-        const tableEntry = new TableEntry(this.getForm(), this.translationService);
-        tableEntry.col1 = e.col1;
-        tableEntry.col2 = e.col2;
-        tableEntry.col3 = e.col3;
-        tableEntry.col4 = e.col4;
-        tableEntry.col5 = e.col5;
-        return tableEntry;
+        if (modelFormField["title"] != null) {
+            this._title = modelFormField["title"];
+        }
+        if (modelFormField["readonly"] != null) {
+            this.readonly = modelFormField["readonly"];
+        }
     }
 
     public delete() {
@@ -123,17 +123,5 @@ export class Table extends ValueField<number> {
         newTableEntry.col5 = "Click to edit";
         this._entries.push(newTableEntry);
     }
-    /*
-        public delete() {
-            const index = this.cars.indexOf(this.selectedEntry);
-            this.entries = this.entries.filter((val, i) => i !== index);
-        }
-
-        delete() {
-            let index = this.cars.indexOf(this.selectedCar);
-            this.cars = this.cars.filter((val, i) => i != index);
-            this.car = null;
-            this.displayDialog = false;
-        }**/
 }
 

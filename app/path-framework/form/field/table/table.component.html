@@ -1,9 +1,12 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.entries" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="true" [rows]="5"  [totalRecords]="100">
+    <p-table [value]="field.entries" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="true" [rows]="5"  [totalRecords]="20">
+        <ng-template *ngIf="field.title" pTemplate="caption">
+            {{field.title}}
+        </ng-template>
         <ng-template pTemplate="header"  let-columns>
             <tr>
-                <th style="width: 3em">
+                <th *ngIf="!field.readonly" style="width: 3em">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th *ngFor="let header of field.listOfHeader" [pSortableColumn]="header.key" pResizableColumn>
@@ -13,7 +16,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-tableEntry let-columns="columns">
-            <tr [pSelectableRow]="tableEntry">
+            <tr  *ngIf="!field.readonly" [pSelectableRow]="tableEntry">
                 <td>
                     <p-tableCheckbox [value]="tableEntry"></p-tableCheckbox>
                 </td>
@@ -28,13 +31,18 @@
                     </p-cellEditor>
                 </td>
             </tr>
+            <tr  *ngIf="field.readonly">
+                <td *ngFor="let header of field.listOfHeader">
+                    {{tableEntry[header.key]}}
+                </td>
+            </tr>
         </ng-template>
-        <ng-template pTemplate="summary" let-tableEntry>
-            <div style="text-align:left">
+        <ng-template *ngIf="!field.readonly" pTemplate="summary" let-tableEntry>
+            <div  style="text-align:left">
                 <button type="button" pButton icon="fa fa-plus" (click)="field.addRow()" label="Add"></button>
-                <button type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete"></button>
+                <button *ngIf="!field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" [disabled]="true"></button>
+                <button *ngIf="field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete"></button>
             </div>
-
         </ng-template>
     </p-table>
 </div>
