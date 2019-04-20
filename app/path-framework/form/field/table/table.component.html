@@ -1,11 +1,20 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.entries" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="true" [rows]="5"  [totalRecords]="20">
+    <p-table [value]="field.entries" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px">
         <ng-template *ngIf="field.title" pTemplate="caption">
             {{field.title}}
+            <p-messages [(value)]="field.message"></p-messages>
         </ng-template>
         <ng-template pTemplate="header"  let-columns>
-            <tr>
+            <tr *ngIf="!field.sorting">
+                <th *ngIf="!field.readonly" style="width: 3em">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th *ngFor="let header of field.listOfHeader"pResizableColumn>
+                    {{header.name}}
+                </th>
+            </tr>
+            <tr *ngIf="field.sorting">
                 <th *ngIf="!field.readonly" style="width: 3em">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
@@ -17,7 +26,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-tableEntry let-columns="columns">
             <tr  *ngIf="!field.readonly" [pSelectableRow]="tableEntry">
-                <td>
+                <td  style="width: 3em">
                     <p-tableCheckbox [value]="tableEntry"></p-tableCheckbox>
                 </td>
                 <td *ngFor="let header of field.listOfHeader" class="ui-resizable-column" pEditableColumn>

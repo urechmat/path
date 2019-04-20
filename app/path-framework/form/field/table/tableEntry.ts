@@ -1,11 +1,20 @@
 import {FormField} from "../form-field";
 
 export class TableEntry extends FormField {
+    private _key: any;
     private _col1: any;
     private _col2: any;
     private _col3: any;
     private _col4: any;
     private _col5: any;
+
+    get key(): any {
+        return this._key;
+    }
+
+    set key(value: any) {
+        this._key = value;
+    }
 
     get col1(): any {
         return this._col1;

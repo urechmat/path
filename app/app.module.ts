@@ -35,6 +35,8 @@ import {TableComponent} from "./path-framework/form/field/table/table.component"
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/primeng";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MessagesModule} from "primeng/messages";
+import {MessageModule} from "primeng/message";
 
 @NgModule({
     imports:      [
@@ -44,6 +46,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         CommonModule,
         TableModule,
         ButtonModule,
+        MessagesModule,
+        MessageModule,
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
