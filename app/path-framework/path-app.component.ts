@@ -39,7 +39,7 @@ import {PathService} from "./service/path.service";
 import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
-import {Table} from "./form/field/table/table.component";
+import {Accordion} from "./form/field/accordion/accordion.component";
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -767,10 +767,10 @@ export abstract class PathAppComponent implements IPathApp {
                 formField.fromJson(modelFormField);
                 break;
             }
-            case "Table": {
-                const table = new Table(form, this.translationService);
-                table.fromJson(modelFormField);
-                formField = table;
+            case "Accordion": {
+                const accordion = new Accordion(form, this.translationService);
+                accordion.fromJson(modelFormField);
+                formField = accordion;
                 break;
             }
             default: {
