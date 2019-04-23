@@ -4,6 +4,7 @@ import {Message} from "primeng/components/common/api";
 import {MessageService} from "primeng/components/common/messageservice";
 import {IForm} from "../../../pathinterface";
 import {TranslationService} from "../../../service/translation.service";
+import {mod} from "ngx-bootstrap/chronos/utils";
 
 @Component({
     selector: "path-accordion",
@@ -18,6 +19,15 @@ export class AccordionComponent {
 
 export class Accordion extends ValueField<any> {
     private _accordionEntries: AccordionEntry[] = [];
+    private _multiple: boolean;
+
+    get multiple(): boolean {
+        return this._multiple;
+    }
+
+    set multiple(value: boolean) {
+        this._multiple = value;
+    }
 
     get accordionEntries(): AccordionEntry[] {
         return this._accordionEntries;
@@ -29,6 +39,9 @@ export class Accordion extends ValueField<any> {
 
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
+        if (modelFormField["multiple"] != null) {
+            this._multiple = modelFormField["multiple"];
+        }
         if (modelFormField["accordion"] != null) {
             for (const entryModel of modelFormField["accordion"]) {
                 const entry = new AccordionEntry();
