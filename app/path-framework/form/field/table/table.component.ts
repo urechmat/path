@@ -1,8 +1,9 @@
 import {Component, Input, Output} from "@angular/core";
 import {ValueField} from "../value-field";
-import {TableEntry} from "./tableEntry";
 import {Message} from "primeng/components/common/api";
 import {MessageService} from "primeng/components/common/messageservice";
+import {IForm} from "../../../pathinterface";
+import {TranslationService} from "../../../service/translation.service";
 
 @Component({
     selector: "path-table",
@@ -34,6 +35,10 @@ export class Table extends ValueField<any> {
     private _message: Message[] = [];
     private _counter: number;
 
+    constructor(form: IForm, translationService: TranslationService) {
+        super(form, translationService);
+        this.value = [];
+    }
     get counter(): number {
         return this._counter;
     }
@@ -149,14 +154,14 @@ export class Table extends ValueField<any> {
         if (modelFormField["row"] != null) {
             this._listOfData = modelFormField["row"];
             for (const entryModel of modelFormField["row"]) {
-                const entry = new TableEntry(this.getForm(), this.translationService);
+                const entry = new TableEntry();
                 entry.key = this.counter;
                 entry.col1 = entryModel.col1;
                 entry.col2 = entryModel.col2;
                 entry.col3 = entryModel.col3;
                 entry.col4 = entryModel.col4;
                 entry.col5 = entryModel.col5;
-                this._entries.push(entry);
+                this.value.push(entry);
                 this.counter++;
             }
         }
@@ -180,22 +185,22 @@ export class Table extends ValueField<any> {
 
     public delete() {
         for (const e of this.selectedEntries) {
-            const index = this.entries.indexOf(e);
-            this.entries = this.entries.filter((val, i) => i !== index);
+            const index = this.value.indexOf(e);
+            this.value = this.value.filter((val, i) => i !== index);
             this.tableEntry = null;
             this.selectedEntries = [];
         }
     }
     public addRow() {
-        if (this._entries.length < this._paginationMax) {
-            const newTableEntry = new TableEntry(this.getForm(), this.translationService);
+        if (this.value.length < this._paginationMax) {
+            const newTableEntry = new TableEntry();
             newTableEntry.key = this.counter;
             newTableEntry.col1 = "Click to edit";
             newTableEntry.col2 = "Click to edit";
             newTableEntry.col3 = "Click to edit";
             newTableEntry.col4 = "Click to edit";
             newTableEntry.col5 = "Click to edit";
-            this._entries.push(newTableEntry);
+            this.value.push(newTableEntry);
             this.counter++;
         } else {
             this.showError();
@@ -204,5 +209,67 @@ export class Table extends ValueField<any> {
     showError() {
         this._message = [];
         this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
+    }
+    public save() {
+    }
+
+    public doClick() {
+    }
+}
+
+export class TableEntry {
+    private _key: any;
+    private _col1: any;
+    private _col2: any;
+    private _col3: any;
+    private _col4: any;
+    private _col5: any;
+
+    get key(): any {
+        return this._key;
+    }
+
+    set key(value: any) {
+        this._key = value;
+    }
+
+    get col1(): any {
+        return this._col1;
+    }
+
+    set col1(value: any) {
+        this._col1 = value;
+    }
+
+    get col2(): any {
+        return this._col2;
+    }
+
+    set col2(value: any) {
+        this._col2 = value;
+    }
+
+    get col3(): any {
+        return this._col3;
+    }
+
+    set col3(value: any) {
+        this._col3 = value;
+    }
+
+    get col4(): any {
+        return this._col4;
+    }
+
+    set col4(value: any) {
+        this._col4 = value;
+    }
+
+    get col5(): any {
+        return this._col5;
+    }
+
+    set col5(value: any) {
+        this._col5 = value;
     }
 }

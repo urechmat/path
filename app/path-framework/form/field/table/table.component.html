@@ -1,6 +1,6 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.entries" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px">
+    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px"ö>
         <ng-template *ngIf="field.title" pTemplate="caption">
             {{field.title}}
             <p-messages [(value)]="field.message"></p-messages>
@@ -32,7 +32,7 @@
                 <td *ngFor="let header of field.listOfHeader" class="ui-resizable-column" pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="tableEntry[header.key]">
+                            <input pInputText type="text" (ngModelChange)="field.doClick()" [(ngModel)]="tableEntry[header.key]">
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{tableEntry[header.key]}}
@@ -49,8 +49,9 @@
         <ng-template *ngIf="!field.readonly" pTemplate="summary" let-tableEntry>
             <div  style="text-align:left">
                 <button type="button" pButton icon="fa fa-plus" (click)="field.addRow()" label="Add"></button>
-                <button *ngIf="!field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" [disabled]="true"></button>
-                <button *ngIf="field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete"></button>
+                <button type="button" pButton  class="ui-button-raised ui-button-success" (click)="field.save()" label="Save" style="float:right"></button>
+                <button *ngIf="!field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" [disabled]="true" style="float:right"></button>
+                <button *ngIf="field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" style="float:right"></button>
             </div>
         </ng-template>
     </p-table>
