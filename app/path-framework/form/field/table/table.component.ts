@@ -201,6 +201,8 @@ export class Table extends ValueField<any> {
             newTableEntry.col4 = "Click to edit";
             newTableEntry.col5 = "Click to edit";
             this.value.push(newTableEntry);
+            console.log("Hier----------------------:" );
+            console.log(this.value);
             this.counter++;
         } else {
             this.showError();
@@ -209,11 +211,6 @@ export class Table extends ValueField<any> {
     showError() {
         this._message = [];
         this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
-    }
-    public save() {
-    }
-
-    public doClick() {
     }
 }
 

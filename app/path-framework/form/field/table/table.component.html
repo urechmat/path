@@ -32,7 +32,7 @@
                 <td *ngFor="let header of field.listOfHeader" class="ui-resizable-column" pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" (ngModelChange)="field.doClick()" [(ngModel)]="tableEntry[header.key]">
+                            <input pInputText type="text" [(ngModel)]="tableEntry[header.key]">
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{tableEntry[header.key]}}
@@ -49,7 +49,6 @@
         <ng-template *ngIf="!field.readonly" pTemplate="summary" let-tableEntry>
             <div  style="text-align:left">
                 <button type="button" pButton icon="fa fa-plus" (click)="field.addRow()" label="Add"></button>
-                <button type="button" pButton  class="ui-button-raised ui-button-success" (click)="field.save()" label="Save" style="float:right"></button>
                 <button *ngIf="!field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" [disabled]="true" style="float:right"></button>
                 <button *ngIf="field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" style="float:right"></button>
             </div>
