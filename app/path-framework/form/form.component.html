@@ -43,6 +43,9 @@
 					<div *ngIf="field.type == 'FormTable'">
 						<path-form-table [field]="field"></path-form-table>
 					</div>
+					<div *ngIf="field.type == 'Accordion'">
+						<path-accordion [field]="field"></path-accordion>
+					</div>
 				</div>
 			</div>
 			<!-- show form buttons on modal-body in mobile version, otherwise they are taking up too much space when the keyboard is shown -->

@@ -40,6 +40,7 @@ import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
 import {FormTable, TableEntry} from "./form/field/formTable/formTable.component";
+import {Accordion} from "./form/field/accordion/accordion.component";
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -784,6 +785,12 @@ export abstract class PathAppComponent implements IPathApp {
                 const table = new FormTable(form, this.translationService);
                 table.fromJson(modelFormField);
                 formField = table;
+                break;
+            }
+            case "Accordion": {
+                const accordion = new Accordion(form, this.translationService);
+                accordion.fromJson(modelFormField);
+                formField = accordion;
                 break;
             }
             default: {

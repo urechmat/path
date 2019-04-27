@@ -32,11 +32,15 @@ import {CustomContainerComponent} from "./path-framework/page/element/custom/cus
 import {ElementListComponent} from "./path-framework/page/element/element-list/element-list.component";
 import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/breadcrumb.component";
 import {FormTableComponent} from "./path-framework/form/field/formTable/formTable.component";
-import {TableModule} from "primeng/table";
+import {AccordionComponent} from "./path-framework/form/field/accordion/accordion.component";
 import {ButtonModule} from "primeng/primeng";
+import {TableModule} from "primeng/table";
+import {AccordionModule} from "primeng/accordion";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
+
+
 
 @NgModule({
     imports:      [
@@ -48,6 +52,8 @@ import {MessageModule} from "primeng/message";
         ButtonModule,
         MessagesModule,
         MessageModule,
+        AccordionModule,
+
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
@@ -79,7 +85,8 @@ import {MessageModule} from "primeng/message";
         ButtonGroupComponent,
         BreadcrumbComponent,
         FileUploadComponent,
-        FormTableComponent
+        FormTableComponent,
+        AccordionComponent
     ],
     exports:      [
         DraggableDirective,
@@ -114,7 +121,8 @@ import {MessageModule} from "primeng/message";
         ButtonGroupComponent,
         BreadcrumbComponent,
         FileUploadComponent,
-        FormTableComponent
+        FormTableComponent,
+        AccordionComponent
     ],
 })
 export class AppModule {
