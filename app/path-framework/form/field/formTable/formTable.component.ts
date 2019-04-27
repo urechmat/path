@@ -6,17 +6,17 @@ import {IForm} from "../../../pathinterface";
 import {TranslationService} from "../../../service/translation.service";
 
 @Component({
-    selector: "path-table",
-    templateUrl: "table.component.html",
+    selector: "path-form-table",
+    templateUrl: "formTable.component.html",
     providers: [MessageService]
 })
-export class TableComponent {
+export class FormTableComponent {
     @Input("field")
     @Output("field")
-    field: Table;
+    field: FormTable;
 }
 
-export class Table extends ValueField<any> {
+export class FormTable extends ValueField<any> {
     private _listOfData: any[] = [];
     private _listOfHeader: any[] = [];
 
@@ -209,11 +209,6 @@ export class Table extends ValueField<any> {
     showError() {
         this._message = [];
         this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
-    }
-    public save() {
-    }
-
-    public doClick() {
     }
 }
 

@@ -40,8 +40,8 @@
 					<div *ngIf="field.type == 'fileUpload'">
 						<path-file-upload [field]="field"></path-file-upload>
 					</div>
-					<div *ngIf="field.type == 'Table'">
-						<path-table [field]="field"></path-table>
+					<div *ngIf="field.type == 'FormTable'">
+						<path-form-table [field]="field"></path-form-table>
 					</div>
 				</div>
 			</div>
