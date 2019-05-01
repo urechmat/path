@@ -1,59 +1,6 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px"ö>
-        <ng-template *ngIf="field.title" pTemplate="caption">
-            {{field.title}}
-            <p-messages [(value)]="field.message"></p-messages>
-        </ng-template>
-        <ng-template pTemplate="header"  let-columns>
-            <tr *ngIf="!field.sorting">
-                <th *ngIf="!field.readonly" style="width: 3em">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th *ngFor="let header of field.listOfHeader"pResizableColumn>
-                    {{header.name}}
-                </th>
-            </tr>
-            <tr *ngIf="field.sorting">
-                <th *ngIf="!field.readonly" style="width: 3em">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th *ngFor="let header of field.listOfHeader" [pSortableColumn]="header.key" pResizableColumn>
-                    {{header.name}}
-                    <p-sortIcon [field]="header.key"></p-sortIcon>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-tableEntry let-columns="columns">
-            <tr  *ngIf="!field.readonly" [pSelectableRow]="tableEntry">
-                <td  style="width: 3em">
-                    <p-tableCheckbox [value]="tableEntry"></p-tableCheckbox>
-                </td>
-                <td *ngFor="let header of field.listOfHeader" class="ui-resizable-column" pEditableColumn>
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="tableEntry[header.key]">
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{tableEntry[header.key]}}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
-            </tr>
-            <tr  *ngIf="field.readonly">
-                <td *ngFor="let header of field.listOfHeader">
-                    {{tableEntry[header.key]}}
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template *ngIf="!field.readonly" pTemplate="summary" let-tableEntry>
-            <div  style="text-align:left">
-                <button type="button" pButton icon="fa fa-plus" (click)="field.addRow()" label="Add"></button>
-                <button *ngIf="!field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" [disabled]="true" style="float:right"></button>
-                <button *ngIf="field.selectedEntries.length" type="button" pButton  class="ui-button-raised ui-button-danger" (click)="field.delete()" label="Delete" style="float:right"></button>
-            </div>
-        </ng-template>
-    </p-table>
+    <p-gmap [options]="field.options" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
 </div>
 
 

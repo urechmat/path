@@ -37,6 +37,7 @@ import {ButtonModule} from "primeng/primeng";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
+import {GMapModule} from "primeng/gmap";
 
 @NgModule({
     imports:      [
@@ -48,6 +49,7 @@ import {MessageModule} from "primeng/message";
         ButtonModule,
         MessagesModule,
         MessageModule,
+        GMapModule,
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()

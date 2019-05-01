@@ -39,7 +39,7 @@ import {PathService} from "./service/path.service";
 import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
-import {Table, TableEntry} from "./form/field/table/table.component";
+import {Table} from "./form/field/table/table.component";
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -586,19 +586,6 @@ export abstract class PathAppComponent implements IPathApp {
                             radioGroupField.isInitialValueSet = true;
                         };
                         setValueOfRadioGroupFieldContextWrapper();
-                    } if (field instanceof Table) {
-                        console.log("setting table value");
-                        field.value = [];
-                        for (const entryModel of data[field.id]) {
-                            const entry = new TableEntry();
-                            entry.key = entryModel._key;
-                            entry.col1 = entryModel._col1;
-                            entry.col2 = entryModel._col2;
-                            entry.col3 = entryModel._col3;
-                            entry.col4 = entryModel._col4;
-                            entry.col5 = entryModel._col5;
-                            field.value.push(entry);
-                        }
                     } else {
                         (<ValueField<any>>field).setValue(data[field.id]);
                         (<ValueField<any>>field).isInitialValueSet = true;
