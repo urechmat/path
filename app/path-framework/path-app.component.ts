@@ -39,7 +39,9 @@ import {PathService} from "./service/path.service";
 import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
-import {Table, MapEntry} from "./form/field/table/table.component";
+import {Maps, MapEntry} from "./form/field/maps/maps.component";
+
+declare var google: any;
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -586,6 +588,23 @@ export abstract class PathAppComponent implements IPathApp {
                             radioGroupField.isInitialValueSet = true;
                         };
                         setValueOfRadioGroupFieldContextWrapper();
+                    } if (field instanceof Maps) {
+                        console.log("hier----------- Maps");
+                        field.value = [];
+                        for (const mapEntry of data[field.id]) {
+                            const entry = new MapEntry();
+                            entry.lat = mapEntry._lat;
+                            entry.lng = mapEntry._lng;
+                            entry.title = mapEntry._title;
+                            entry.draggable = mapEntry._draggable;
+                            field.value.push(entry);
+                        }
+                        for (const marker of field.value) {
+                            const a = new google.maps.Marker({
+                                position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.draggable});
+                            field.overlays.push(a);
+                        }
+                        console.log(field.value);
                     } else {
                         (<ValueField<any>>field).setValue(data[field.id]);
                         (<ValueField<any>>field).isInitialValueSet = true;
@@ -767,10 +786,10 @@ export abstract class PathAppComponent implements IPathApp {
                 formField.fromJson(modelFormField);
                 break;
             }
-            case "Table": {
-                const table = new Table(form, this.translationService);
-                table.fromJson(modelFormField);
-                formField = table;
+            case "Maps": {
+                const maps = new Maps(form, this.translationService);
+                maps.fromJson(modelFormField);
+                formField = maps;
                 break;
             }
             default: {

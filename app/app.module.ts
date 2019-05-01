@@ -31,7 +31,7 @@ import {CustomDirective} from "./path-framework/page/element/custom/custom.direc
 import {CustomContainerComponent} from "./path-framework/page/element/custom/custom-container.component";
 import {ElementListComponent} from "./path-framework/page/element/element-list/element-list.component";
 import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/breadcrumb.component";
-import {TableComponent} from "./path-framework/form/field/table/table.component";
+import {MapsComponent} from "./path-framework/form/field/maps/maps.component";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/primeng";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -85,7 +85,7 @@ import {CheckboxModule} from "primeng/checkbox";
         ButtonGroupComponent,
         BreadcrumbComponent,
         FileUploadComponent,
-        TableComponent
+        MapsComponent
     ],
     exports:      [
         DraggableDirective,
@@ -120,7 +120,7 @@ import {CheckboxModule} from "primeng/checkbox";
         ButtonGroupComponent,
         BreadcrumbComponent,
         FileUploadComponent,
-        TableComponent
+        MapsComponent
     ],
 })
 export class AppModule {
