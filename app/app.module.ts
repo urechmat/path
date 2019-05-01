@@ -38,6 +38,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
 import {GMapModule} from "primeng/gmap";
+import {DialogModule} from "primeng/dialog";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
     imports:      [
@@ -50,6 +52,8 @@ import {GMapModule} from "primeng/gmap";
         MessagesModule,
         MessageModule,
         GMapModule,
+        DialogModule,
+        CheckboxModule,
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot()
