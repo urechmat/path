@@ -39,7 +39,7 @@ import {PathService} from "./service/path.service";
 import {TranslationService} from "./service/translation.service";
 import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
-import {Table} from "./form/field/table/table.component";
+import {Table, MapEntry} from "./form/field/table/table.component";
 
 export abstract class PathAppComponent implements IPathApp {
 

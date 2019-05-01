@@ -23,11 +23,25 @@ export class Table extends ValueField<any> {
 
     private _selectedPosition: any;
 
-    private _infoWindow: any;
-
     private _draggable: boolean;
+    private _mapEntry: MapEntry;
+    private _entries: MapEntry[] = [];
 
-    private _messageService: MessageService;
+    get mapEntry(): MapEntry {
+        return this._mapEntry;
+    }
+
+    set mapEntry(value: MapEntry) {
+        this._mapEntry = value;
+    }
+
+    get entries(): MapEntry[] {
+        return this._entries;
+    }
+
+    set entries(value: MapEntry[]) {
+        this._entries = value;
+    }
 
     get markerTitle(): string {
         return this._markerTitle;
@@ -43,10 +57,6 @@ export class Table extends ValueField<any> {
 
     set selectedPosition(value: any) {
         this._selectedPosition = value;
-    }
-
-    get infoWindow(): any {
-        return this._infoWindow;
     }
 
     get draggable(): boolean {
@@ -77,19 +87,22 @@ export class Table extends ValueField<any> {
         return this._options;
     }
 
-    set options(value: any) {
-        this._options = value;
-    }
-
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
         this._options = {
             center: {lat: 47.377847, lng: 8.539834},
             zoom: 12
         };
+        const marker = new MapEntry();
+        marker.lat = 47.377847;
+        marker.lng = 8.539834;
+        marker.title = "Zürich HB";
+        marker.dragable = false;
+        this._entries.push(marker);
         this.overlays = [
-            new google.maps.Marker({position: {lat: 47.377847, lng: 8.539834}, title:"Zürich HB"}),
+            new google.maps.Marker({position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.dragable}),
         ];
+        this.value = this._entries;
     }
 
     zoomIn(map) {
@@ -110,8 +123,58 @@ export class Table extends ValueField<any> {
     }
 
     addMarker() {
-        this.overlays.push(new google.maps.Marker({position: {lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng()}, title: this.markerTitle, draggable: this.draggable}));
+        const marker = new MapEntry();
+        marker.lat = this.selectedPosition.lat();
+        marker.lng = this.selectedPosition.lng();
+        marker.title = this.markerTitle;
+        if (this._draggable) {
+            marker.dragable = this.draggable;
+        } else {
+            marker.dragable = false;
+        }
+        this._entries.push(marker);
+        this.value = this._entries;
+        this.overlays.push(new google.maps.Marker({position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.dragable}));
         this.markerTitle = null;
         this.dialogVisible = false;
+    }
+}
+
+export class MapEntry {
+    private _lat: number;
+    private _lng: number;
+    private _title: string;
+    private _dragable: boolean;
+
+    get lat(): number {
+        return this._lat;
+    }
+
+    set lat(value: number) {
+        this._lat = value;
+    }
+
+    get lng(): number {
+        return this._lng;
+    }
+
+    set lng(value: number) {
+        this._lng = value;
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    set title(value: string) {
+        this._title = value;
+    }
+
+    get dragable(): boolean {
+        return this._dragable;
+    }
+
+    set dragable(value: boolean) {
+        this._dragable = value;
     }
 }
