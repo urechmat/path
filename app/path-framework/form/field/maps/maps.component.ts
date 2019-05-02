@@ -18,85 +18,12 @@ export class MapsComponent {
 export class Maps extends ValueField<any> {
     private _options: any;
     private _overlays: any[];
-
     private _dialogVisible: boolean;
     private _markerTitle: string;
-
     private _selectedPosition: any;
-
     private _draggable: boolean;
-    private _mapEntry: MapEntry;
-
     private _message: Message[] = [];
     private _titleUnique: boolean;
-
-    get titleUnique(): boolean {
-        return this._titleUnique;
-    }
-
-    set titleUnique(value: boolean) {
-        this._titleUnique = value;
-    }
-
-    get message(): Message[] {
-        return this._message;
-    }
-
-    set message(value: Message[]) {
-        this._message = value;
-    }
-
-    get mapEntry(): MapEntry {
-        return this._mapEntry;
-    }
-
-    set mapEntry(value: MapEntry) {
-        this._mapEntry = value;
-    }
-
-    get markerTitle(): string {
-        return this._markerTitle;
-    }
-
-    set markerTitle(value: string) {
-        this._markerTitle = value;
-    }
-
-    get selectedPosition(): any {
-        return this._selectedPosition;
-    }
-
-    set selectedPosition(value: any) {
-        this._selectedPosition = value;
-    }
-
-    get draggable(): boolean {
-        return this._draggable;
-    }
-
-    set draggable(value: boolean) {
-        this._draggable = value;
-    }
-
-    get dialogVisible(): boolean {
-        return this._dialogVisible;
-    }
-
-    set dialogVisible(value: boolean) {
-        this._dialogVisible = value;
-    }
-
-    get overlays(): any[] {
-        return this._overlays;
-    }
-
-    set overlays(value: any[]) {
-        this._overlays = value;
-    }
-
-    get options(): any {
-        return this._options;
-    }
 
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
@@ -145,12 +72,7 @@ export class Maps extends ValueField<any> {
     }
 
     handleDragEnd(event) {
-        console.log("Hier------------------ HandleDragEnd");
-        console.log(event.overlay.title);
-        console.log(event.overlay.internalPosition.lat());
-        console.log(event.overlay.internalPosition.lng());
         const objIndex = this.value.findIndex((obj => obj.title === event.overlay.title));
-        console.log(this.value[objIndex]);
         this.value[objIndex].lat = event.overlay.internalPosition.lat();
         this.value[objIndex].lng = event.overlay.internalPosition.lng();
     }
@@ -162,7 +84,6 @@ export class Maps extends ValueField<any> {
             }
         }
         if (this.titleUnique) {
-            console.log(this.titleUnique);
             const marker = new MapEntry();
             marker.lat = this.selectedPosition.lat();
             marker.lng = this.selectedPosition.lng();
@@ -177,8 +98,68 @@ export class Maps extends ValueField<any> {
         } else {
             this._message = [];
             this._message.push({severity: "error", summary: "Error: ", detail: "Title must be unique"});
-            console.log("huhu");
         }
+    }
+
+    // Getter & Setter
+    get titleUnique(): boolean {
+        return this._titleUnique;
+    }
+
+    set titleUnique(value: boolean) {
+        this._titleUnique = value;
+    }
+
+    get message(): Message[] {
+        return this._message;
+    }
+
+    set message(value: Message[]) {
+        this._message = value;
+    }
+
+    get markerTitle(): string {
+        return this._markerTitle;
+    }
+
+    set markerTitle(value: string) {
+        this._markerTitle = value;
+    }
+
+    get selectedPosition(): any {
+        return this._selectedPosition;
+    }
+
+    set selectedPosition(value: any) {
+        this._selectedPosition = value;
+    }
+
+    get draggable(): boolean {
+        return this._draggable;
+    }
+
+    set draggable(value: boolean) {
+        this._draggable = value;
+    }
+
+    get dialogVisible(): boolean {
+        return this._dialogVisible;
+    }
+
+    set dialogVisible(value: boolean) {
+        this._dialogVisible = value;
+    }
+
+    get overlays(): any[] {
+        return this._overlays;
+    }
+
+    set overlays(value: any[]) {
+        this._overlays = value;
+    }
+
+    get options(): any {
+        return this._options;
     }
 }
 
