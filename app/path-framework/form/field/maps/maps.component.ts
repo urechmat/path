@@ -28,17 +28,19 @@ export class Maps extends ValueField<any> {
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
         this.value = [];
+        this._overlays = [];
         if (modelFormField["marker"] != null) {
             for (const entryModel of modelFormField["marker"]) {
                 const entry = new MapEntry();
                 entry.lat = entryModel.latitude;
                 entry.lng = entryModel.longitude;
                 entry.title = entryModel.title;
-                entry.draggable = entryModel.draggable;
+                entry.draggable = false;
                 this.value.push(entry);
-                this.overlays = [
-                    new google.maps.Marker({position: {lat: entry.lat, lng: entry.lng}, title: entry.title, draggable: entry.draggable}),
-                ];
+                const marker =  new google.maps.Marker(
+                    {position: {lat: entry.lat, lng: entry.lng}, title: entry.title, draggable: entry.draggable}
+                    );
+                this._overlays.push(marker);
             }
             this._options = {
                 center: {lat: this.value[0].lat, lng: this.value[0].lng},
