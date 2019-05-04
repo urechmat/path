@@ -11,7 +11,15 @@ export class ToggleComponent {
     field: Toggle;
 }
 
-export class Toggle extends ValueField<number> {
+export class Toggle extends ValueField<boolean> {
+
+    public fromJson(modelFormField) {
+        super.fromJson(modelFormField);
+        this.value = false;
+        if (modelFormField["checked"] != null) {
+            this.value = modelFormField["checked"];
+        }
+    }
 }
 
 
