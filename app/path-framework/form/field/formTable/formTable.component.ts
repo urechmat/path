@@ -39,6 +39,76 @@ export class FormTable extends ValueField<any> {
         super(form, translationService);
         this.value = [];
     }
+
+    public fromJson(modelFormField) {
+        super.fromJson(modelFormField);
+        this.counter = 0;
+        this._pagination = false;
+        this.paginationMax = 100;
+        if (modelFormField["header"] != null) {
+            this._listOfHeader = modelFormField["header"];
+        }
+        if (modelFormField["row"] != null) {
+            this._listOfData = modelFormField["row"];
+            for (const entryModel of modelFormField["row"]) {
+                const entry = new TableEntry();
+                entry.key = this.counter;
+                entry.col1 = entryModel.col1;
+                entry.col2 = entryModel.col2;
+                entry.col3 = entryModel.col3;
+                entry.col4 = entryModel.col4;
+                entry.col5 = entryModel.col5;
+                this.value.push(entry);
+                this.counter++;
+            }
+        }
+        if (modelFormField["title"] != null) {
+            this._title = modelFormField["title"];
+        }
+        if (modelFormField["readonly"] != null) {
+            this.readonly = modelFormField["readonly"];
+        }
+        if (modelFormField["sorting"] != null) {
+            this._sorting = modelFormField["sorting"];
+        }
+        if (modelFormField["paginationNumb"] != null) {
+            this._pagination = true;
+            this._paginationAnz = modelFormField["paginationNumb"];
+        }
+        if (modelFormField["paginationMax"] != null) {
+            this._paginationMax = modelFormField["paginationMax"];
+        }
+    }
+
+    public delete() {
+        for (const e of this.selectedEntries) {
+            const index = this.value.indexOf(e);
+            this.value = this.value.filter((val, i) => i !== index);
+            this.tableEntry = null;
+            this.selectedEntries = [];
+        }
+    }
+    public addRow() {
+        if (this.value.length < this._paginationMax) {
+            const newTableEntry = new TableEntry();
+            newTableEntry.key = this.counter;
+            newTableEntry.col1 = "Click to edit";
+            newTableEntry.col2 = "Click to edit";
+            newTableEntry.col3 = "Click to edit";
+            newTableEntry.col4 = "Click to edit";
+            newTableEntry.col5 = "Click to edit";
+            this.value.push(newTableEntry);
+            this.counter++;
+        } else {
+            this.showError();
+        }
+    }
+    showError() {
+        this._message = [];
+        this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
+    }
+
+    // Getter & Setter
     get counter(): number {
         return this._counter;
     }
@@ -143,73 +213,6 @@ export class FormTable extends ValueField<any> {
         this._listOfHeader = value;
     }
 
-    public fromJson(modelFormField) {
-        super.fromJson(modelFormField);
-        this.counter = 0;
-        this._pagination = false;
-        this.paginationMax = 100;
-        if (modelFormField["header"] != null) {
-            this._listOfHeader = modelFormField["header"];
-        }
-        if (modelFormField["row"] != null) {
-            this._listOfData = modelFormField["row"];
-            for (const entryModel of modelFormField["row"]) {
-                const entry = new TableEntry();
-                entry.key = this.counter;
-                entry.col1 = entryModel.col1;
-                entry.col2 = entryModel.col2;
-                entry.col3 = entryModel.col3;
-                entry.col4 = entryModel.col4;
-                entry.col5 = entryModel.col5;
-                this.value.push(entry);
-                this.counter++;
-            }
-        }
-        if (modelFormField["title"] != null) {
-            this._title = modelFormField["title"];
-        }
-        if (modelFormField["readonly"] != null) {
-            this.readonly = modelFormField["readonly"];
-        }
-        if (modelFormField["sorting"] != null) {
-            this._sorting = modelFormField["sorting"];
-        }
-        if (modelFormField["paginationNumb"] != null) {
-            this._pagination = true;
-            this._paginationAnz = modelFormField["paginationNumb"];
-        }
-        if (modelFormField["paginationMax"] != null) {
-            this._paginationMax = modelFormField["paginationMax"];
-        }
-    }
-
-    public delete() {
-        for (const e of this.selectedEntries) {
-            const index = this.value.indexOf(e);
-            this.value = this.value.filter((val, i) => i !== index);
-            this.tableEntry = null;
-            this.selectedEntries = [];
-        }
-    }
-    public addRow() {
-        if (this.value.length < this._paginationMax) {
-            const newTableEntry = new TableEntry();
-            newTableEntry.key = this.counter;
-            newTableEntry.col1 = "Click to edit";
-            newTableEntry.col2 = "Click to edit";
-            newTableEntry.col3 = "Click to edit";
-            newTableEntry.col4 = "Click to edit";
-            newTableEntry.col5 = "Click to edit";
-            this.value.push(newTableEntry);
-            this.counter++;
-        } else {
-            this.showError();
-        }
-    }
-    showError() {
-        this._message = [];
-        this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
-    }
 }
 
 export class TableEntry {
