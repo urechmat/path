@@ -41,6 +41,7 @@ import {KeyUtility} from "./utility/key-utility";
 import {Breadcrumb} from "./page/element/breadcrumb/breadcrumb.component";
 import {FormTable, TableEntry} from "./form/field/formTable/formTable.component";
 import {Accordion} from "./form/field/accordion/accordion.component";
+import {SliderField} from "./form/field/slider/slider-field.component";
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -791,6 +792,12 @@ export abstract class PathAppComponent implements IPathApp {
                 const accordion = new Accordion(form, this.translationService);
                 accordion.fromJson(modelFormField);
                 formField = accordion;
+                break;
+            }
+            case "SliderField": {
+                const sliderField = new SliderField(form, this.translationService);
+                sliderField.fromJson(modelFormField);
+                formField = sliderField;
                 break;
             }
             default: {

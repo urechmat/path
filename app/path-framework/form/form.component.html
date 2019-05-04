@@ -46,6 +46,9 @@
 					<div *ngIf="field.type == 'Accordion'">
 						<path-accordion [field]="field"></path-accordion>
 					</div>
+					<div *ngIf="field.type == 'SliderField'">
+						<path-slider [field]="field"></path-slider>
+					</div>
 				</div>
 			</div>
 			<!-- show form buttons on modal-body in mobile version, otherwise they are taking up too much space when the keyboard is shown -->

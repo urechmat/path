@@ -21,6 +21,21 @@ export class Accordion extends ValueField<any> {
     private _accordionEntries: AccordionEntry[] = [];
     private _multiple: boolean;
 
+    public fromJson(modelFormField) {
+        super.fromJson(modelFormField);
+        if (modelFormField["multiple"] != null) {
+            this._multiple = modelFormField["multiple"];
+        }
+        if (modelFormField["accordion"] != null) {
+            for (const entryModel of modelFormField["accordion"]) {
+                const entry = new AccordionEntry();
+                entry.title = entryModel.title;
+                entry.text = entryModel.text;
+                this._accordionEntries.push(entry);
+            }
+        }
+    }
+
     get multiple(): boolean {
         return this._multiple;
     }
@@ -37,20 +52,6 @@ export class Accordion extends ValueField<any> {
         this._accordionEntries = value;
     }
 
-    public fromJson(modelFormField) {
-        super.fromJson(modelFormField);
-        if (modelFormField["multiple"] != null) {
-            this._multiple = modelFormField["multiple"];
-        }
-        if (modelFormField["accordion"] != null) {
-            for (const entryModel of modelFormField["accordion"]) {
-                const entry = new AccordionEntry();
-                entry.title = entryModel.title;
-                entry.text = entryModel.text;
-                this._accordionEntries.push(entry);
-            }
-        }
-    }
 }
 export class AccordionEntry {
     private _title: string;

@@ -426,6 +426,28 @@ Forms may contain a file upload field to upload one or more files. A file choose
 }
 ```
 
+##### Accordion
+
+An accordion displays one or more nested text fields.
+
+```json
+{
+    "id": "informations",
+    "type": "Accordion",
+    "name": "Informations",
+    "width": 2,
+    "multiple": false,
+    "accordion": [{
+       title: "Title 1",
+       text: "Information text 1"
+       }, {
+       title: "Title 2",
+       text: "Information text 2"
+    }
+    ]
+}
+```
+
 #### Form default values
 
 You can set the **urlDefaults** parameter to true. Path will execute a GET request prior to opening a form with key value **null**. Your server application should response with default values.
