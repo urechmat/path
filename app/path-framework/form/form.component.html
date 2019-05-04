@@ -49,6 +49,9 @@
 					<div *ngIf="field.type == 'SliderField'">
 						<path-slider [field]="field"></path-slider>
 					</div>
+					<div *ngIf="field.type == 'Toggle'">
+						<path-toggle [field]="field"></path-toggle>
+					</div>
 				</div>
 			</div>
 			<!-- show form buttons on modal-body in mobile version, otherwise they are taking up too much space when the keyboard is shown -->

@@ -34,6 +34,7 @@ import {BreadcrumbComponent} from "./path-framework/page/element/breadcrumb/brea
 import {FormTableComponent} from "./path-framework/form/field/formTable/formTable.component";
 import {AccordionComponent} from "./path-framework/form/field/accordion/accordion.component";
 import {SliderFieldComponent} from "./path-framework/form/field/slider/slider-field.component";
+import {ToggleComponent} from "./path-framework/form/field/toggle/toggle.component";
 import {ButtonModule} from "primeng/primeng";
 import {TableModule} from "primeng/table";
 import {AccordionModule} from "primeng/accordion";
@@ -87,7 +88,8 @@ import {MessageModule} from "primeng/message";
         FileUploadComponent,
         FormTableComponent,
         AccordionComponent,
-        SliderFieldComponent
+        SliderFieldComponent,
+        ToggleComponent
     ],
     exports:      [
         DraggableDirective,
@@ -124,7 +126,8 @@ import {MessageModule} from "primeng/message";
         FileUploadComponent,
         FormTableComponent,
         AccordionComponent,
-        SliderFieldComponent
+        SliderFieldComponent,
+        ToggleComponent
     ],
 })
 export class AppModule {
