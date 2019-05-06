@@ -31,49 +31,23 @@ export class Maps extends ValueField<any> {
     constructor(form: IForm, translationService: TranslationService) {
         super(form, translationService);
         this.value = [];
-        console.log("Konstruktor-----");
-        console.log(this.value);
         this._overlays = [];
-        console.log(this._overlays);
         this._infoWindow = new google.maps.InfoWindow();
     }
 
     public fromJson(modelFormField) {
-        console.log("Super-----");
-        console.log(this.value);
         super.fromJson(modelFormField);
         this.width = 2;
+        this._markerTitle = null;
+        this._options = {
+            center: {lat: 47.377847, lng: 8.539834},
+            zoom: 12
+        };
         if (modelFormField["addMarker"] != null) {
             this._addNewMarker = (modelFormField["addMarker"]);
         }
         if (modelFormField["clearMap"] != null) {
             this._clearMap = (modelFormField["clearMap"]);
-        }
-        if (modelFormField["marker"] != null) {
-            for (const entryModel of modelFormField["marker"]) {
-                console.log("Marker-----");
-                console.log(this.value);
-                const entry = new MapEntry();
-                entry.lat = entryModel.latitude;
-                entry.lng = entryModel.longitude;
-                entry.title = entryModel.title;
-                this.value.push(entry);
-                console.log("value pushed-----");
-                console.log(this.value);
-                const marker =  new google.maps.Marker(
-                    {position: {lat: entry.lat, lng: entry.lng}, title: entry.title}
-                );
-                this._overlays.push(marker);
-            }
-            this._options = {
-                center: {lat: this.value[0].lat, lng: this.value[0].lng},
-                zoom: 12
-            };
-        } else {
-            this._options = {
-                center: {lat: 47.377847, lng: 8.539834},
-                zoom: 12
-            };
         }
     }
 
@@ -108,17 +82,22 @@ export class Maps extends ValueField<any> {
         }
     }
 
-    addMarker() {
-        const marker = new MapEntry();
-        marker.lat = this._selectedPosition.lat();
-        marker.lng = this._selectedPosition.lng();
-        marker.title = this._markerTitle;
-        this.value.push(marker);
-        const a = new google.maps.Marker({
-            position: {lat: marker.lat, lng: marker.lng}, title: marker.title});
-        this._overlays.push(a);
-        this._markerTitle = null;
-        this._dialogVisible = false;
+    addMarker(event) {
+        this._message = [];
+        if (this._markerTitle !== null) {
+            const marker = new MapEntry();
+            marker.lat = this._selectedPosition.lat();
+            marker.lng = this._selectedPosition.lng();
+            marker.title = this._markerTitle;
+            this.value.push(marker);
+            const a = new google.maps.Marker({
+                position: {lat: marker.lat, lng: marker.lng}, title: marker.title});
+            this._overlays.push(a);
+            this._markerTitle = null;
+            this._dialogVisible = false;
+        } else {
+            this._message.push({severity: "error", summary: "Error: ", detail: "Please enter a title"});
+        }
     }
 
     // Getter & Setter
@@ -142,10 +121,6 @@ export class Maps extends ValueField<any> {
         return this._selectedPosition;
     }
 
-    set selectedPosition(value: any) {
-        this._selectedPosition = value;
-    }
-
     get dialogVisible(): boolean {
         return this._dialogVisible;
     }
@@ -158,28 +133,8 @@ export class Maps extends ValueField<any> {
         return this._overlays;
     }
 
-    set overlays(value: any[]) {
-        this._overlays = value;
-    }
-
     get options(): any {
         return this._options;
-    }
-
-    get infoWindow(): any {
-        return this._infoWindow;
-    }
-
-    set infoWindow(value: any) {
-        this._infoWindow = value;
-    }
-
-    get addNewMarker(): boolean {
-        return this._addNewMarker;
-    }
-
-    set addNewMarker(value: boolean) {
-        this._addNewMarker = value;
     }
 
     get clearMap(): boolean {
