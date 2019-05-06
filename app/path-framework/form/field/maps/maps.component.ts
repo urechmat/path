@@ -40,8 +40,8 @@ export class Maps extends ValueField<any> {
         this.width = 2;
         this._markerTitle = null;
         this._options = {
-            center: {lat: 47.377847, lng: 8.539834},
-            zoom: 12
+            center: {lat: 46.823762258465955, lng: 8.322004089630354},
+            zoom: 7
         };
         if (modelFormField["addMarker"] != null) {
             this._addNewMarker = (modelFormField["addMarker"]);
