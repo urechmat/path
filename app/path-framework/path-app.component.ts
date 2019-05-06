@@ -588,23 +588,6 @@ export abstract class PathAppComponent implements IPathApp {
                             radioGroupField.isInitialValueSet = true;
                         };
                         setValueOfRadioGroupFieldContextWrapper();
-                    } if (field instanceof Maps) {
-                        console.log("hier----------- Maps");
-                        field.value = [];
-                        for (const mapEntry of data[field.id]) {
-                            const entry = new MapEntry();
-                            entry.lat = mapEntry._lat;
-                            entry.lng = mapEntry._lng;
-                            entry.title = mapEntry._title;
-                            entry.draggable = mapEntry._draggable;
-                            field.value.push(entry);
-                        }
-                        for (const marker of field.value) {
-                            const a = new google.maps.Marker({
-                                position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.draggable});
-                            field.overlays.push(a);
-                        }
-                        console.log(field.value);
                     } else {
                         (<ValueField<any>>field).setValue(data[field.id]);
                         (<ValueField<any>>field).isInitialValueSet = true;
@@ -632,6 +615,23 @@ export abstract class PathAppComponent implements IPathApp {
                         }
                     };
                     setValueOfFieldListFieldContextWrapper();
+                }
+                if (field instanceof Maps) {
+                    console.log("path-app.component.ts============");
+                    console.log(field.value);
+                    field.value = [];
+                    for (const mapEntry of data[field.id]) {
+                        const entry = new MapEntry();
+                        entry.lat = mapEntry._lat;
+                        entry.lng = mapEntry._lng;
+                        entry.title = mapEntry._title;
+                        field.value.push(entry);
+                    }
+                    for (const marker of field.value) {
+                        const a = new google.maps.Marker({
+                            position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.draggable});
+                        field.overlays.push(a);
+                    }
                 }
             }
         }, null);
