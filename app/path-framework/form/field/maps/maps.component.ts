@@ -104,10 +104,6 @@ export class Maps extends ValueField<any> {
     }
 
     handleDragEnd(event) {
-        console.log("Hier------------------ HandleDragEnd");
-        console.log(event.overlay.title);
-        console.log(event.overlay.internalPosition.lat());
-        console.log(event.overlay.internalPosition.lng());
         const objIndex = this.value.findIndex((obj => obj.title === event.overlay.title));
         console.log(this.value[objIndex]);
         this.value[objIndex].lat = event.overlay.internalPosition.lat();
