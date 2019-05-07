@@ -25,8 +25,8 @@ export class Maps extends ValueField<any> {
     private _selectedPosition: any;
     private _message: Message[] = [];
     private _infoWindow: any;
-    private _addNewMarker: boolean;
     private _clearMap: boolean;
+    private _draggable: boolean;
 
     constructor(form: IForm, translationService: TranslationService) {
         super(form, translationService);
@@ -43,8 +43,8 @@ export class Maps extends ValueField<any> {
             center: {lat: 46.823762258465955, lng: 8.322004089630354},
             zoom: 7
         };
-        if (modelFormField["addMarker"] != null) {
-            this._addNewMarker = (modelFormField["addMarker"]);
+        if (modelFormField["draggable"] != null) {
+            this._draggable = (modelFormField["draggable"]);
         }
         if (modelFormField["clearMap"] != null) {
             this._clearMap = (modelFormField["clearMap"]);
@@ -65,9 +65,7 @@ export class Maps extends ValueField<any> {
     }
 
     handleMapClick(event) {
-        if (this._addNewMarker) {
-            this._dialogVisible = true;
-        }
+        this._dialogVisible = true;
         this._selectedPosition = event.latLng;
     }
 
@@ -89,15 +87,31 @@ export class Maps extends ValueField<any> {
             marker.lat = this._selectedPosition.lat();
             marker.lng = this._selectedPosition.lng();
             marker.title = this._markerTitle;
+            if (this._draggable) {
+                marker.draggable = true;
+            } else {
+                marker.draggable = false;
+            }
             this.value.push(marker);
             const a = new google.maps.Marker({
-                position: {lat: marker.lat, lng: marker.lng}, title: marker.title});
+                position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.draggable});
             this._overlays.push(a);
             this._markerTitle = null;
             this._dialogVisible = false;
         } else {
             this._message.push({severity: "error", summary: "Error: ", detail: "Please enter a title"});
         }
+    }
+
+    handleDragEnd(event) {
+        console.log("Hier------------------ HandleDragEnd");
+        console.log(event.overlay.title);
+        console.log(event.overlay.internalPosition.lat());
+        console.log(event.overlay.internalPosition.lng());
+        const objIndex = this.value.findIndex((obj => obj.title === event.overlay.title));
+        console.log(this.value[objIndex]);
+        this.value[objIndex].lat = event.overlay.internalPosition.lat();
+        this.value[objIndex].lng = event.overlay.internalPosition.lng();
     }
 
     // Getter & Setter
@@ -144,12 +158,21 @@ export class Maps extends ValueField<any> {
     set clearMap(value: boolean) {
         this._clearMap = value;
     }
+
+    get draggable(): boolean {
+        return this._draggable;
+    }
+
+    set draggable(value: boolean) {
+        this._draggable = value;
+    }
 }
 
 export class MapEntry {
     private _lat: number;
     private _lng: number;
     private _title: string;
+    private _draggable: boolean;
 
     get lat(): number {
         return this._lat;
@@ -173,5 +196,13 @@ export class MapEntry {
 
     set title(value: string) {
         this._title = value;
+    }
+
+    get draggable(): boolean {
+        return this._draggable;
+    }
+
+    set draggable(value: boolean) {
+        this._draggable = value;
     }
 }

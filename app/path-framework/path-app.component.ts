@@ -623,6 +623,7 @@ export abstract class PathAppComponent implements IPathApp {
                         entry.lat = mapEntry._lat;
                         entry.lng = mapEntry._lng;
                         entry.title = mapEntry._title;
+                        entry.draggable = mapEntry._draggable;
                         field.value.push(entry);
                     }
                     for (const marker of field.value) {

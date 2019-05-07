@@ -1,6 +1,6 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-gmap #gmap [options]="field.options" [overlays]="field.overlays" [style]="{'width':'100%','height':'320px'}" (onMapClick)="field.handleMapClick($event)" (onOverlayClick)="field.handleOverlayClick($event)"></p-gmap>
+    <p-gmap #gmap [options]="field.options" [overlays]="field.overlays" [style]="{'width':'100%','height':'320px'}" (onMapClick)="field.handleMapClick($event)" (onOverlayClick)="field.handleOverlayClick($event)" (onOverlayDragEnd)="field.handleDragEnd($event)"></p-gmap>
     <div style="margin-top: 1em;">
         <button *ngIf="field.clearMap" type="button" pButton label="Clear" icon="pi pi-times" (click)="field.clear()" style="margin-right:.25em"></button>
         <button type="button" pButton label="Zoom In" icon="pi pi-plus" (click)="field.zoomIn(gmap.getMap())" style="margin-right:.25em"></button>
@@ -26,6 +26,7 @@
             </div>
         </p-footer>
     </p-dialog>
+    
 </div>
 
 
