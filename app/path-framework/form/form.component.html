@@ -52,6 +52,9 @@
 					<div *ngIf="field.type == 'Toggle'">
 						<path-toggle [field]="field"></path-toggle>
 					</div>
+					<div *ngIf="field.type == 'Maps'">
+						<path-maps [field]="field"></path-maps>
+					</div>
 				</div>
 			</div>
 			<!-- show form buttons on modal-body in mobile version, otherwise they are taking up too much space when the keyboard is shown -->

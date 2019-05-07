@@ -35,10 +35,14 @@ import {FormTableComponent} from "./path-framework/form/field/formTable/formTabl
 import {AccordionComponent} from "./path-framework/form/field/accordion/accordion.component";
 import {SliderFieldComponent} from "./path-framework/form/field/slider/slider-field.component";
 import {ToggleComponent} from "./path-framework/form/field/toggle/toggle.component";
+import {MapsComponent} from "./path-framework/form/field/maps/maps.component";
 import {ButtonModule} from "primeng/primeng";
 import {TableModule} from "primeng/table";
 import {AccordionModule} from "primeng/accordion";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {GMapModule} from "primeng/gmap";
+import {DialogModule} from "primeng/dialog";
+import {CheckboxModule} from "primeng/checkbox";
 import {MessagesModule} from "primeng/messages";
 import {MessageModule} from "primeng/message";
 
@@ -54,6 +58,9 @@ import {MessageModule} from "primeng/message";
         ButtonModule,
         MessagesModule,
         MessageModule,
+        GMapModule,
+        DialogModule,
+        CheckboxModule,
         AccordionModule,
         BrowserAnimationsModule,
         BsDatepickerModule.forRoot(),
@@ -89,7 +96,8 @@ import {MessageModule} from "primeng/message";
         FormTableComponent,
         AccordionComponent,
         SliderFieldComponent,
-        ToggleComponent
+        ToggleComponent,
+        MapsComponent
     ],
     exports:      [
         DraggableDirective,
@@ -127,7 +135,8 @@ import {MessageModule} from "primeng/message";
         FormTableComponent,
         AccordionComponent,
         SliderFieldComponent,
-        ToggleComponent
+        ToggleComponent,
+        MapsComponent
     ],
 })
 export class AppModule {

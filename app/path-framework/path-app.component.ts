@@ -43,6 +43,9 @@ import {FormTable, TableEntry} from "./form/field/formTable/formTable.component"
 import {Accordion} from "./form/field/accordion/accordion.component";
 import {SliderField} from "./form/field/slider/slider-field.component";
 import {Toggle} from "./form/field/toggle/toggle.component";
+import {Maps, MapEntry} from "./form/field/maps/maps.component";
+
+declare var google: any;
 
 export abstract class PathAppComponent implements IPathApp {
 
@@ -630,6 +633,22 @@ export abstract class PathAppComponent implements IPathApp {
                     };
                     setValueOfFieldListFieldContextWrapper();
                 }
+                if (data[field.id] != null && field instanceof Maps) {
+                    field.value = [];
+                    for (const mapEntry of data[field.id]) {
+                        const entry = new MapEntry();
+                        entry.lat = mapEntry._lat;
+                        entry.lng = mapEntry._lng;
+                        entry.title = mapEntry._title;
+                        entry.draggable = mapEntry._draggable;
+                        field.value.push(entry);
+                    }
+                    for (const marker of field.value) {
+                        const a = new google.maps.Marker({
+                            position: {lat: marker.lat, lng: marker.lng}, title: marker.title, draggable: marker.draggable});
+                        field.overlays.push(a);
+                    }
+                }
             }
         }, null);
     }
@@ -805,6 +824,12 @@ export abstract class PathAppComponent implements IPathApp {
                 const toggle = new Toggle(form, this.translationService);
                 toggle.fromJson(modelFormField);
                 formField = toggle;
+                break;
+            }
+            case "Maps": {
+                const maps = new Maps(form, this.translationService);
+                maps.fromJson(modelFormField);
+                formField = maps;
                 break;
             }
             default: {
