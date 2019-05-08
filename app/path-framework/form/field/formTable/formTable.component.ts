@@ -46,6 +46,8 @@ export class FormTable extends ValueField<any> {
         this._pagination = false;
         this.paginationMax = 100;
         this.width = 2;
+        this.readonly = true;
+        this._sorting = false
         if (modelFormField["header"] != null) {
             this._listOfHeader = modelFormField["header"];
         }

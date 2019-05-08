@@ -490,7 +490,7 @@ The minimum and the maximum of the input range are defined with the property "mi
 An accordion displays one or more collapsed Text fields, that open when you click on the title
 
 ###### Basic structure of an Accordion
-The accordion needs at least a title and the corresponding text to be displayed correctly.
+The accordion needs at least an "accordion" property including a "title" and the corresponding "text" to be displayed correctly.
 ```json
 {
  "id": "informations",
@@ -504,8 +504,21 @@ The accordion needs at least a title and the corresponding text to be displayed 
 }
 ```
 
+###### Define individual text fields
+To create text fields, a property pair of "title" and "text" must be added to the array "accordion". The title defines the title of the text field and the text the corresponding text.
+```json
+"accordion": [{
+   "title": "Title 1",
+   "text": "Information text 1"
+   }, {
+   "title": "Title 2",
+   "text": "Information text 2"
+}
+]
+```
+
 ###### Allow multiple Textfields to be open
-The multiple property defines whether only one text field can be expanded at a time or whether several text fields can be open at the same time. The value is set by a boolean and is false by default.
+The "multiple" property defines whether only one text field can be expanded at a time or whether several text fields can be open at the same time. The value is set by a boolean and is false by default.
 ```json
  "multiple": false
 ```
@@ -518,7 +531,7 @@ The multiple property defines whether only one text field can be expanded at a t
 | name      | string  | null    | A translation key for the name of the field
 | width     | number  | 1       | The logical width, current 1 and 2 are supported
 | multiple  | boolean | false   | Defines whether multiple text fields can be opened at the same time.
-| Accordion | array   | null    | Defines the Textfield/s of the accordion. The array contains a list of items with the property pair title and text.
+| accordion | array   | null    | Defines the Textfield/s of the accordion. The array contains a list of items with the property pair title and text.
 | *title*   | string  | null    | Defines the title of a single text field.
 | *text*    | string  | null    | Defines the text of a single text field.
 
@@ -537,13 +550,13 @@ A map shows a section of a map and allows you to place markers at the desired lo
 ```
 
 ###### Move markers 
-The draggable property allows you to move and reposition set markers. The property is set by a boolean and its default is false.
+The "draggable" property allows you to move and reposition set markers. The property is set by a boolean and its default is false.
 ```json
   "draggable": true
 ```
 
 ###### Delete all markers 
-The clearMap property allows you to delete all set markers of a map. The property is set by a boolean and its default is false.
+The "clearMap" property allows you to delete all set markers of a map. The property is set by a boolean and its default is false.
 ```json
   "clearMap": true
 ```
@@ -559,7 +572,132 @@ The clearMap property allows you to delete all set markers of a map. The propert
 | clearMap  | boolean | false   | Allows you to delete all set markers of the map
 
 
+##### Table
 
+The table can be used to display data in tabular form. The table supports various modification and editing options.
+
+###### Basic structure of a table
+The table needs at least one property "header" and one "row" to be displayed correctly.
+```json
+{
+ "id": "formTable",
+ "type": "FormTable",
+ "name": "TestTable",
+ "header": [{
+   "key": "col1",
+   "name": "Column 1"
+ }
+ ],
+ "row": [{
+    "col1": "Column 1 Row 1"
+ }
+ ]
+}
+```
+
+###### Add title to table
+The property "title" defines the table title that is displayed above the header of the table. If no value is set, no title will appear.
+```json
+ "title": "Titel of the Table"
+```
+
+###### Edit table
+The "readonly" property defines whether the table can be edited or not. Editing the table involves adding new rows, editing individual cells, and deleting rows. This property is defined by a boolean and is set to false by default.
+```json
+ "readonly": true
+```
+
+###### Sorting
+The "sorting" property allows you to sort by individual columns. This property is defined by a boolean and is set to false by default.
+```json
+ "sorting": false
+```
+
+###### Pagination
+The page navigation for many entries can be set using the two properties "paginationNumb" and "paginationMax". The property "paginationNumb" defines the number of entries per page and the property "paginationMax" defines the maximum number of possible entries.
+```json
+ "paginationNumb": 5,
+ "paginationMax": 20
+```
+
+###### Table header
+The "header" property defines the first row, the header row of the table. The "header" property is an array that requests the two properties "key" and "name" as input. The header array needs at least 1 property pair and may have a maximum of 5 property pairs. 
+<br/>The "key" must be "colx" where x is the column number. For example, the key of the third column must be "col3".
+<br/>The "name" is a string and can be freely chosen.
+```json
+"header": [{
+  key: "col1",
+  name: "Column 1"
+}, {
+  key: "col2",
+  name: "Column 2"
+}, {
+  key: "col3",
+  name: "Column 3"
+}, {
+  key: "col4",
+  name: "Column 4"
+}
+]
+```
+
+###### Table rows
+The row property defines the individual rows of the table. Row is an array and expects a new item as input for the desired row. 
+<br/>An item has its own property for each column. These must be named exactly the same as the key property in the header.  They must also define the same number of columns as defined in the header.
+
+```json
+"row": [{
+  col1: "Column 1 Row 1",
+  col2: "Column 2 Row 1",
+  col3: "Column 3 Row 1",
+  col4: "Column 4 Row 1"
+}, {
+  col1: "Column 1 Row 2",
+  col2: "Column 2 Row 2",
+  col3: "Column 3 Row 2",
+  col4: "Column 4 Row 2"
+}
+]
+```
+
+###### Properties 
+| Name           | Type    | Default | Description  |
+| ---------------|---------| --------| ------------|
+| id             | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type           | string  | null    | The field type (e.g. text, number, ...)
+| name           | string  | null    | A translation key for the name of the field
+| title          | string  | null    | Allows you to set a table title
+| readonly       | boolean | false   | Allows you to add rows, edit cells, and delete rows
+| sorting        | boolean | false   | Allows sorting by individual columns
+| paginationNumb | number  | null    | Defines the maximum number of rows per page
+| paginationMax  | number  | null    | Defines the maximum number of possible rows
+| header         | array   | null    | Defines the header row of the table
+| *key*          | string  | null    | Serves as identifier for the column
+| *name*         | string  | null    | Defines the title of a column
+| row            | array   | null    | Defines the rows of the table
+| *col1*         | string  | null    | Defines the first column of the row
+| *col2*         | string  | null    | Defines the second column of the series
+| *col3*         | string  | null    | Defines the third column of the series
+| *col4*         | string  | null    | Defines the fourth column of the series
+| *col5*         | string  | null    | Defines the fifth column of the series
+
+
+
+
+
+###### Predefined state 
+The property "checked" defines the predefined status of the toggle. The property is set by a boolean, true for enabled and to false for disabled. If the checked property is not set, its value is false by default.
+```json
+  "checked": true
+```
+
+###### Properties 
+| Name    | Type    | Default | Description  |
+| --------|---------| --------| ------------|
+| id      | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type    | string  | null    | The field type (e.g. text, number, ...)
+| name    | string  | null    | A translation key for the name of the field
+| checked | boolean | false   | Predefined status of the toggle
 
 
 

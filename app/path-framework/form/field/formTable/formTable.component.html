@@ -1,6 +1,6 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [resizableColumns]="true" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px"ö>
+    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px"ö>
         <ng-template *ngIf="field.title" pTemplate="caption">
             {{field.title}}
             <p-messages [(value)]="field.message"></p-messages>
@@ -10,7 +10,7 @@
                 <th *ngIf="!field.readonly" style="width: 3em">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th *ngFor="let header of field.listOfHeader"pResizableColumn>
+                <th *ngFor="let header of field.listOfHeader">
                     {{header.name}}
                 </th>
             </tr>
@@ -18,7 +18,7 @@
                 <th *ngIf="!field.readonly" style="width: 3em">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th *ngFor="let header of field.listOfHeader" [pSortableColumn]="header.key" pResizableColumn>
+                <th *ngFor="let header of field.listOfHeader" [pSortableColumn]="header.key">
                     {{header.name}}
                     <p-sortIcon [field]="header.key"></p-sortIcon>
                 </th>
@@ -29,7 +29,7 @@
                 <td  style="width: 3em">
                     <p-tableCheckbox [value]="tableEntry"></p-tableCheckbox>
                 </td>
-                <td *ngFor="let header of field.listOfHeader" class="ui-resizable-column" pEditableColumn>
+                <td *ngFor="let header of field.listOfHeader" pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="tableEntry[header.key]">
