@@ -497,8 +497,8 @@ The accordion needs at least a title and the corresponding text to be displayed 
  "type": "Accordion",
  "name": "Informations",
  "accordion": [{
-    title: "Title 1",
-    text: "Information text 1"
+    "title": "Title 1",
+    "text": "Information text 1"
  }
  ]
 }
@@ -522,6 +522,41 @@ The multiple property defines whether only one text field can be expanded at a t
 | *title*   | string  | null    | Defines the title of a single text field.
 | *text*    | string  | null    | Defines the text of a single text field.
 
+
+##### Map
+
+A map shows a section of a map and allows you to place markers at the desired location.
+
+###### Basic structure of a toggle
+```json
+{
+ "id": "formMap",
+ "type": "Maps",
+ "name": "Location"
+}
+```
+
+###### Move markers 
+The draggable property allows you to move and reposition set markers. The property is set by a boolean and its default is false.
+```json
+  "draggable": true
+```
+
+###### Delete all markers 
+The clearMap property allows you to delete all set markers of a map. The property is set by a boolean and its default is false.
+```json
+  "clearMap": true
+```
+
+
+###### Properties 
+| Name      | Type    | Default | Description  |
+| ----------|---------| --------| ------------|
+| id        | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type      | string  | null    | The field type (e.g. text, number, ...)
+| name      | string  | null    | A translation key for the name of the field
+| draggable | boolean | false   | Allows you to change set markers
+| clearMap  | boolean | false   | Allows you to delete all set markers of the map
 
 
 
