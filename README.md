@@ -642,8 +642,8 @@ The "header" property defines the first row, the header row of the table. The "h
 ```
 
 ###### Table rows
-The row property defines the individual rows of the table. Row is an array and expects a new item as input for the desired row. 
-<br/>An item has its own property for each column. These must be named exactly the same as the key property in the header.  They must also define the same number of columns as defined in the header.
+The "row" property defines the individual rows of the table. "Row" is an array and expects a new item as input for the desired row. 
+<br/>An item has an own property for each column. These must be named exactly the same as the "key" property in the "header".  They must also define the same number of columns as defined in the header.
 
 ```json
 "row": [{
