@@ -497,8 +497,8 @@ The accordion needs at least an "accordion" property including a "title" and the
  "type": "Accordion",
  "name": "Informations",
  "accordion": [{
-    "title": "Title 1",
-    "text": "Information text 1"
+    title: "Title 1",
+    text: "Information text 1"
  }
  ]
 }
@@ -508,11 +508,11 @@ The accordion needs at least an "accordion" property including a "title" and the
 To create text fields, a property pair of "title" and "text" must be added to the array "accordion". The title defines the title of the text field and the text the corresponding text.
 ```json
 "accordion": [{
-   "title": "Title 1",
-   "text": "Information text 1"
+   title: "Title 1",
+   text: "Information text 1"
    }, {
-   "title": "Title 2",
-   "text": "Information text 2"
+   title: "Title 2",
+   text: "Information text 2"
 }
 ]
 ```
@@ -584,12 +584,12 @@ The table needs at least one property "header" and one "row" to be displayed cor
  "type": "FormTable",
  "name": "TestTable",
  "header": [{
-   "key": "col1",
-   "name": "Column 1"
+   key: "col1",
+   name: "Column 1"
  }
  ],
  "row": [{
-    "col1": "Column 1 Row 1"
+    col1: "Column 1 Row 1"
  }
  ]
 }
