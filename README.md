@@ -682,30 +682,6 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 | *col5*         | string  | null    | Defines the fifth column of the series
 
 
-
-
-
-###### Predefined state 
-The property "checked" defines the predefined status of the toggle. The property is set by a boolean, true for enabled and to false for disabled. If the checked property is not set, its value is false by default.
-```json
-  "checked": true
-```
-
-###### Properties 
-| Name    | Type    | Default | Description  |
-| --------|---------| --------| ------------|
-| id      | string  | null    | The field id, used as JSON key when transferring data to/from the server
-| type    | string  | null    | The field type (e.g. text, number, ...)
-| name    | string  | null    | A translation key for the name of the field
-| checked | boolean | false   | Predefined status of the toggle
-
-
-
-
-
-
-
-
 #### Form default values
 
 You can set the **urlDefaults** parameter to true. Path will execute a GET request prior to opening a form with key value **null**. Your server application should response with default values.
