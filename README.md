@@ -426,27 +426,112 @@ Forms may contain a file upload field to upload one or more files. A file choose
 }
 ```
 
-##### Accordion
+##### Toggle
 
-An accordion displays one or more nested text fields.
+A toggle represents a switch, which can be used to represent two states. A toggle can either be enabled or disabled.
 
+###### Basic structure of a toggle
 ```json
-{
-    "id": "informations",
-    "type": "Accordion",
-    "name": "Informations",
-    "width": 2,
-    "multiple": false,
-    "accordion": [{
-       title: "Title 1",
-       text: "Information text 1"
-       }, {
-       title: "Title 2",
-       text: "Information text 2"
-    }
-    ]
+ {
+  "id": "toggle",
+  "type": "Toggle",
+  "name": "Member"
 }
 ```
+
+###### Predefined state 
+The property "checked" defines the predefined status of the toggle. The property is set by a boolean, true for enabled and to false for disabled. If the checked property is not set, its value is false by default.
+```json
+  "checked": true
+```
+
+###### Properties 
+| Name    | Type    | Default | Description  |
+| --------|---------| --------| ------------|
+| id      | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type    | string  | null    | The field type (e.g. text, number, ...)
+| name    | string  | null    | A translation key for the name of the field
+| checked | boolean | false   | Predefined status of the toggle
+
+##### Slider
+
+A Slider is used for a horizontally scrolable range input of numbers.
+
+###### Basic structure of a slider
+```json
+ {
+ "id": "slider",
+ "type": "SliderField",
+ "name": "Slider",
+ "width": 1
+}
+```
+
+###### Set the minimum and maximum input 
+The minimum and the maximum of the input range are defined with the property "min" and "max".
+
+```json
+  "min": 50,
+  "max": 80
+```
+
+###### Properties 
+| Name    | Type    | Default | Description  |
+| --------|---------| --------| ------------|
+| id      | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type    | string  | null    | The field type (e.g. text, number, ...)
+| name    | string  | null    | A translation key for the name of the field
+| width   | number  | 1       | The logical width, current 1 and 2 are supported
+| min     | number  | 0       | The minimum of the slider range
+| width   | number  | 100     | The maximum of the slider range
+
+##### Accordion
+
+An accordion displays one or more collapsed Text fields, that open when you click on the title
+
+###### Basic structure of an Accordion
+The accordion needs at least a title and the corresponding text to be displayed correctly.
+```json
+{
+ "id": "informations",
+ "type": "Accordion",
+ "name": "Informations",
+ "accordion": [{
+    title: "Title 1",
+    text: "Information text 1"
+ }
+ ]
+}
+```
+
+###### Allow multiple Textfields to be open
+The multiple property defines whether only one text field can be expanded at a time or whether several text fields can be open at the same time. The value is set by a boolean and is false by default.
+```json
+ "multiple": false
+```
+
+###### Properties 
+| Name      | Type    | Default | Description  |
+| ----------|---------| --------| ------------|
+| id        | string  | null    | The field id, used as JSON key when transferring data to/from the server
+| type      | string  | null    | The field type (e.g. text, number, ...)
+| name      | string  | null    | A translation key for the name of the field
+| width     | number  | 1       | The logical width, current 1 and 2 are supported
+| multiple  | boolean | false   | Defines whether multiple text fields can be opened at the same time.
+| Accordion | array   | null    | Defines the Textfield/s of the accordion. The array contains a list of items with the property pair title and text.
+| *title*   | string  | null    | Defines the title of a single text field.
+| *text*    | string  | null    | Defines the text of a single text field.
+
+
+
+
+
+
+
+
+
+
+
 
 #### Form default values
 
