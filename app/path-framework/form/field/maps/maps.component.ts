@@ -38,7 +38,6 @@ export class Maps extends ValueField<any> {
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
         this.width = 2;
-        this._markerTitle = null;
         this._options = {
             center: {lat: 46.823762258465955, lng: 8.322004089630354},
             zoom: 7
