@@ -667,7 +667,7 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 | type           | string  | null    | The field type (e.g. text, number, ...)
 | name           | string  | null    | A translation key for the name of the field
 | title          | string  | null    | Allows you to set a table title
-| readonly       | boolean | false   | Allows you to add rows, edit cells, and delete rows
+| readonly       | boolean | true   | Allows you to add rows, edit cells, and delete rows
 | sorting        | boolean | false   | Allows sorting by individual columns
 | paginationNumb | number  | null    | Defines the maximum number of rows per page
 | paginationMax  | number  | null    | Defines the maximum number of possible rows
