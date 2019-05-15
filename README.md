@@ -642,7 +642,7 @@ The "header" property defines the first row, the header row of the table. The "h
 <br/>The "key" must be named "key" and it has to be "colx" where x is the column number. For example, the key of the third column must be "col3".
 <br/>The attribute for "name" is a string and can be freely chosen.
 ```json
-"header": [{
+"headerRow": [{
   key: "col1",
   name: "Column 1"
 }, {
@@ -663,7 +663,7 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 <br/>An item has an own property for each column. These must be named exactly the same as the "key" property in the "header".  They must also define the same number of columns as defined in the header.
 
 ```json
-"row": [{
+"rows": [{
   col1: "Column 1 Row 1",
   col2: "Column 2 Row 1",
   col3: "Column 3 Row 1",
@@ -687,10 +687,10 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 | readonly       | boolean | true    | Allows you to add rows, edit cells, and delete rows
 | sorting        | boolean | false   | Allows sorting by individual columns
 | scrollable     | boolean | true    | Adds a Scrollbar if the height of 200px is exeeded
-| header         | array   | null    | Defines the header row of the table
+| headerRow         | array   | null    | Defines the header row of the table
 | *key*          | string  | null    | Serves as identifier for the column
 | *name*         | string  | null    | Defines the title of a column
-| row            | array   | null    | Defines the rows of the table
+| rows            | array   | null    | Defines the rows of the table
 | *col1*         | string  | null    | Defines the first column of the row
 | *col2*         | string  | null    | Defines the second column of the series
 | *col3*         | string  | null    | Defines the third column of the series
