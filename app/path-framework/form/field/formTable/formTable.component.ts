@@ -1,14 +1,11 @@
 import {Component, Input, Output} from "@angular/core";
 import {ValueField} from "../value-field";
-import {Message} from "primeng/components/common/api";
-import {MessageService} from "primeng/components/common/messageservice";
 import {IForm} from "../../../pathinterface";
 import {TranslationService} from "../../../service/translation.service";
 
 @Component({
     selector: "path-form-table",
-    templateUrl: "formTable.component.html",
-    providers: [MessageService]
+    templateUrl: "formTable.component.html"
 })
 export class FormTableComponent {
     @Input("field")
@@ -19,6 +16,7 @@ export class FormTableComponent {
 export class FormTable extends ValueField<any> {
     private _listOfData: any[] = [];
     private _listOfHeader: any[] = [];
+    private _scrollable: boolean;
 
     private _entries: TableEntry[] = [];
     private _selectedEntries: TableEntry[] = [];
@@ -28,11 +26,7 @@ export class FormTable extends ValueField<any> {
     private _title: string;
     private _readString: string;
     private _sorting: boolean;
-    private _pagination: boolean;
-    private _paginationAnz: number;
-    private _paginationMax: number;
 
-    private _message: Message[] = [];
     private _counter: number;
 
     constructor(form: IForm, translationService: TranslationService) {
@@ -43,17 +37,15 @@ export class FormTable extends ValueField<any> {
     public fromJson(modelFormField) {
         super.fromJson(modelFormField);
         this.counter = 0;
-        this._pagination = false;
-        this.paginationMax = 100;
         this.width = 2;
         this.readonly = true;
-        this._sorting = false
-        if (modelFormField["header"] != null) {
-            this._listOfHeader = modelFormField["header"];
+        this._sorting = false;
+        if (modelFormField["headerRow"] != null) {
+            this._listOfHeader = modelFormField["headerRow"];
         }
-        if (modelFormField["row"] != null) {
-            this._listOfData = modelFormField["row"];
-            for (const entryModel of modelFormField["row"]) {
+        if (modelFormField["rows"] != null) {
+            this._listOfData = modelFormField["rows"];
+            for (const entryModel of modelFormField["rows"]) {
                 const entry = new TableEntry();
                 entry.key = this.counter;
                 entry.col1 = entryModel.col1;
@@ -74,12 +66,8 @@ export class FormTable extends ValueField<any> {
         if (modelFormField["sorting"] != null) {
             this._sorting = modelFormField["sorting"];
         }
-        if (modelFormField["paginationNumb"] != null) {
-            this._pagination = true;
-            this._paginationAnz = modelFormField["paginationNumb"];
-        }
-        if (modelFormField["paginationMax"] != null) {
-            this._paginationMax = modelFormField["paginationMax"];
+        if (modelFormField["scrollable"] != null) {
+            this._scrollable = modelFormField["scrollable"];
         }
     }
 
@@ -92,23 +80,15 @@ export class FormTable extends ValueField<any> {
         }
     }
     public addRow() {
-        if (this.value.length < this._paginationMax) {
-            const newTableEntry = new TableEntry();
-            newTableEntry.key = this.counter;
-            newTableEntry.col1 = "Click to edit";
-            newTableEntry.col2 = "Click to edit";
-            newTableEntry.col3 = "Click to edit";
-            newTableEntry.col4 = "Click to edit";
-            newTableEntry.col5 = "Click to edit";
-            this.value.push(newTableEntry);
-            this.counter++;
-        } else {
-            this.showError();
-        }
-    }
-    showError() {
-        this._message = [];
-        this._message.push({severity: "error", summary: "Error: ", detail: "Maximum number of entries reached"});
+        const newTableEntry = new TableEntry();
+        newTableEntry.key = this.counter;
+        newTableEntry.col1 = "Click to edit";
+        newTableEntry.col2 = "Click to edit";
+        newTableEntry.col3 = "Click to edit";
+        newTableEntry.col4 = "Click to edit";
+        newTableEntry.col5 = "Click to edit";
+        this.value.push(newTableEntry);
+        this.counter++;
     }
 
     // Getter & Setter
@@ -118,38 +98,6 @@ export class FormTable extends ValueField<any> {
 
     set counter(value: number) {
         this._counter = value;
-    }
-
-    get message(): Message[] {
-        return this._message;
-    }
-
-    set message(value: Message[]) {
-        this._message = value;
-    }
-
-    get pagination(): boolean {
-        return this._pagination;
-    }
-
-    set pagination(value: boolean) {
-        this._pagination = value;
-    }
-
-    get paginationAnz(): number {
-        return this._paginationAnz;
-    }
-
-    set paginationAnz(value: number) {
-        this._paginationAnz = value;
-    }
-
-    get paginationMax(): number {
-        return this._paginationMax;
-    }
-
-    set paginationMax(value: number) {
-        this._paginationMax = value;
     }
 
     get sorting(): boolean {
@@ -216,6 +164,13 @@ export class FormTable extends ValueField<any> {
         this._listOfHeader = value;
     }
 
+    get scrollable(): boolean {
+        return this._scrollable;
+    }
+
+    set scrollable(value: boolean) {
+        this._scrollable = value;
+    }
 }
 
 export class TableEntry {

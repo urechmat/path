@@ -1,9 +1,8 @@
 <path-form-field-label [label]="field.name" [required]="field.required"></path-form-field-label>
 <div [class.col-md-4]="field.width == 1" [class.col-md-10]="field.width == 2">
-    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [paginator]="field.pagination" [rows]="field.paginationAnz"  [totalRecords]="field.paginationMax" [scrollable]="!field.pagination" scrollHeight="200px"ö>
+    <p-table [value]="field.value" [columns]="field.listOfHeader" [(selection)]="field.selectedEntries" [scrollable]="field.scrollable" scrollHeight="200px">
         <ng-template *ngIf="field.title" pTemplate="caption">
             {{field.title}}
-            <p-messages [(value)]="field.message"></p-messages>
         </ng-template>
         <ng-template pTemplate="header"  let-columns>
             <tr *ngIf="!field.sorting">
@@ -29,7 +28,7 @@
                 <td  style="width: 3em">
                     <p-tableCheckbox [value]="tableEntry"></p-tableCheckbox>
                 </td>
-                <td *ngFor="let header of field.listOfHeader" pEditableColumn>
+                <td *ngFor="let header of field.listOfHeader" pEditableColumn >
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="tableEntry[header.key]">

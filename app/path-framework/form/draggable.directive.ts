@@ -21,7 +21,7 @@ export class DraggableDirective implements OnInit {
         if (window.innerWidth < 768) {
             this._allowDrag = false;
         }
-        this._allowDrag = true;
+        this._allowDrag = false;
         // css changes
         if (this._allowDrag) {
             this.element.nativeElement.style.position = "relative";

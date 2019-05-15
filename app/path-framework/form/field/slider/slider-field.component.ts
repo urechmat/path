@@ -14,6 +14,7 @@ export class SliderFieldComponent {
 export class SliderField extends ValueField<number> {
     private _min: number;
     private _max: number;
+    private _step: number;
 
 
     public fromJson(modelFormField) {
@@ -27,6 +28,12 @@ export class SliderField extends ValueField<number> {
             this._max = modelFormField["max"];
         } else {
             this._max = 100;
+        }
+        if (modelFormField["value"] != null) {
+            this.value = modelFormField["value"];
+        }
+        if (modelFormField["step"] != null) {
+            this._step = modelFormField["step"];
         }
     }
 
@@ -47,6 +54,13 @@ export class SliderField extends ValueField<number> {
         this._max = value;
     }
 
+    get step(): number {
+        return this._step;
+    }
+
+    set step(value: number) {
+        this._step = value;
+    }
 }
 
 

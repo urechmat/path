@@ -533,7 +533,7 @@ h3, .h3, h4, .h4, h5, .h5 {
 }
 
 input:checked + .toggle {
-    background-color: #808080;
+    background-color: #4CAF50;
 }
 
 input:focus + .toggle {
@@ -552,4 +552,9 @@ input:checked + .toggle:before {
 
 .toggle.round:before {
     border-radius: 50%;
+}
+
+/*----FormTable----*/
+td{
+    word-break:break-all
 }

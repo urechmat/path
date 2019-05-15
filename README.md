@@ -469,6 +469,7 @@ A Slider is used for a horizontally scrolable range input of numbers.
 
 ###### Set the minimum and maximum input 
 The minimum and the maximum of the input range are defined with the property "min" and "max".
+The maximum value must be greater than the minimum value in order for the slider to be displayed correctly.
 
 ```json
   "min": 50,
@@ -482,8 +483,8 @@ The minimum and the maximum of the input range are defined with the property "mi
 | type    | string  | null    | The field type (e.g. text, number, ...)
 | name    | string  | null    | A translation key for the name of the field
 | width   | number  | 1       | The logical width, current 1 and 2 are supported
-| min     | number  | 0       | The minimum of the slider range
-| width   | number  | 100     | The maximum of the slider range
+| min     | number  | 0       | The minimum value of the slider range. Must be smaller than the minimum value.
+| max   | number  | 100       | The maximum value of the slider range. Must be greater than the minimum value.
 
 ##### Accordion
 
@@ -598,7 +599,7 @@ The table needs at least one property "header" and one "row" to be displayed cor
 ###### Add title to table
 The property "title" defines the table title that is displayed above the header of the table. If no value is set, no title will appear.
 ```json
- "title": "Titel of the Table"
+ "title": "Title of the Table"
 ```
 
 ###### Edit table
@@ -667,7 +668,7 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 | type           | string  | null    | The field type (e.g. text, number, ...)
 | name           | string  | null    | A translation key for the name of the field
 | title          | string  | null    | Allows you to set a table title
-| readonly       | boolean | true   | Allows you to add rows, edit cells, and delete rows
+| readonly       | boolean | true    | Allows you to add rows, edit cells, and delete rows
 | sorting        | boolean | false   | Allows sorting by individual columns
 | paginationNumb | number  | null    | Defines the maximum number of rows per page
 | paginationMax  | number  | null    | Defines the maximum number of possible rows
