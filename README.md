@@ -476,6 +476,21 @@ The maximum value must be greater than the minimum value in order for the slider
   "max": 80
 ```
 
+###### Set the initial value 
+The value property defines the initial value of the sliders.
+
+```json
+  "value": 66
+```
+
+###### Set step size 
+The step property defines the step size with which the slider can be dragged.
+
+```json
+  "step": 2
+```
+
+
 ###### Properties 
 | Name    | Type    | Default | Description  |
 | --------|---------| --------| ------------|
@@ -483,8 +498,10 @@ The maximum value must be greater than the minimum value in order for the slider
 | type    | string  | null    | The field type (e.g. text, number, ...)
 | name    | string  | null    | A translation key for the name of the field
 | width   | number  | 1       | The logical width, current 1 and 2 are supported
-| min     | number  | 0       | The minimum value of the slider range. Must be smaller than the minimum value.
-| max   | number  | 100       | The maximum value of the slider range. Must be greater than the minimum value.
+| min     | number  | 0       | The minimum value of the slider range. Must be smaller than the minimum value
+| max     | number  | 100     | The maximum value of the slider range. Must be greater than the minimum value
+| value   | number  | null    | The initial value of the slider
+| step    | number  | 1       | the step size with which the slider can be dragged
 
 ##### Accordion
 
@@ -494,7 +511,7 @@ An accordion displays one or more collapsed Text fields, that open when you clic
 The accordion needs at least an "accordion" property including a "title" and the corresponding "text" to be displayed correctly.
 ```json
 {
- "id": "informations",
+ "id": "accordion",
  "type": "Accordion",
  "name": "Informations",
  "accordion": [{
@@ -531,10 +548,10 @@ The "multiple" property defines whether only one text field can be expanded at a
 | type      | string  | null    | The field type (e.g. text, number, ...)
 | name      | string  | null    | A translation key for the name of the field
 | width     | number  | 1       | The logical width, current 1 and 2 are supported
-| multiple  | boolean | false   | Defines whether multiple text fields can be opened at the same time.
-| accordion | array   | null    | Defines the Textfield/s of the accordion. The array contains a list of items with the property pair title and text.
-| *title*   | string  | null    | Defines the title of a single text field.
-| *text*    | string  | null    | Defines the text of a single text field.
+| multiple  | boolean | false   | Defines whether multiple text fields can be opened at the same time
+| accordion | array   | null    | Defines the Textfield/s of the accordion. The array contains a list of items with the property pair title and text
+| *title*   | string  | null    | Defines the title of a single text field
+| *text*    | string  | null    | Defines the text of a single text field
 
 
 ##### Map
@@ -584,12 +601,12 @@ The table needs at least one property "header" and one "row" to be displayed cor
  "id": "formTable",
  "type": "FormTable",
  "name": "TestTable",
- "header": [{
+ "headerRow": [{
    key: "col1",
    name: "Column 1"
  }
  ],
- "row": [{
+ "rows": [{
     col1: "Column 1 Row 1"
  }
  ]
@@ -614,17 +631,16 @@ The "sorting" property allows you to sort by individual columns. This property i
  "sorting": false
 ```
 
-###### Pagination
-The page navigation for many entries can be set using the two properties "paginationNumb" and "paginationMax". The property "paginationNumb" defines the number of entries per page and the property "paginationMax" defines the maximum number of possible entries.
+###### Scollbar
+The scrollable property adds a scrollbar to the table as soon as the height of the table exceeds 200px.
 ```json
- "paginationNumb": 5,
- "paginationMax": 20
+ "scrollable": true
 ```
 
 ###### Table header
 The "header" property defines the first row, the header row of the table. The "header" property is an array that requests the two properties "key" and "name" as input. The header array needs at least 1 property pair and may have a maximum of 5 property pairs. 
-<br/>The "key" must be "colx" where x is the column number. For example, the key of the third column must be "col3".
-<br/>The "name" is a string and can be freely chosen.
+<br/>The "key" must be named "key" and it has to be "colx" where x is the column number. For example, the key of the third column must be "col3".
+<br/>The attribute for "name" is a string and can be freely chosen.
 ```json
 "header": [{
   key: "col1",
@@ -670,8 +686,7 @@ The "row" property defines the individual rows of the table. "Row" is an array a
 | title          | string  | null    | Allows you to set a table title
 | readonly       | boolean | true    | Allows you to add rows, edit cells, and delete rows
 | sorting        | boolean | false   | Allows sorting by individual columns
-| paginationNumb | number  | null    | Defines the maximum number of rows per page
-| paginationMax  | number  | null    | Defines the maximum number of possible rows
+| scrollable     | boolean | true    | Adds a Scrollbar if the height of 200px is exeeded
 | header         | array   | null    | Defines the header row of the table
 | *key*          | string  | null    | Serves as identifier for the column
 | *name*         | string  | null    | Defines the title of a column
