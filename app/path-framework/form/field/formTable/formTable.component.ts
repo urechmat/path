@@ -40,6 +40,7 @@ export class FormTable extends ValueField<any> {
         this.width = 2;
         this.readonly = true;
         this._sorting = false;
+        this._scrollable=true;
         if (modelFormField["headerRow"] != null) {
             this._listOfHeader = modelFormField["headerRow"];
         }

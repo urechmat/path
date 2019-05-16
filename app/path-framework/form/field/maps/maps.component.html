@@ -3,8 +3,6 @@
     <p-gmap #gmap [options]="field.options" [overlays]="field.overlays" [style]="{'width':'100%','height':'320px'}" (onMapClick)="field.handleMapClick($event)" (onOverlayClick)="field.handleOverlayClick($event)" (onOverlayDragEnd)="field.handleDragEnd($event)"></p-gmap>
     <div style="margin-top: 1em;">
         <button *ngIf="field.clearMap" type="button" pButton label="Clear" icon="pi pi-times" (click)="field.clear()" style="margin-right:.25em"></button>
-        <button type="button" pButton label="Zoom In" icon="pi pi-plus" (click)="field.zoomIn(gmap.getMap())" style="margin-right:.25em"></button>
-        <button type="button" pButton label="Zoom Out" icon="pi pi-minus" (click)="field.zoomOut(gmap.getMap())"></button>
     </div>
 
     <p-dialog [style]="{width: '300px', minWidth: '200px'}" [minY]="70"
