@@ -462,8 +462,7 @@ A Slider is used for a horizontally scrolable range input of numbers.
  {
  "id": "slider",
  "type": "SliderField",
- "name": "Slider",
- "width": 1
+ "name": "Slider"
 }
 ```
 
@@ -638,7 +637,7 @@ The scrollable property adds a scrollbar to the table as soon as the height of t
 ```
 
 ###### Table header
-The "header" property defines the first row, the header row of the table. The "header" property is an array that requests the two properties "key" and "name" as input. The header array needs at least 1 property pair and may have a maximum of 5 property pairs. 
+The "headerRow" property defines the first row, the header row of the table. The "headerRow" property is an array that requests the two properties "key" and "name" as input. The header array needs at least 1 property pair and may have a maximum of 5 property pairs. 
 <br/>The "key" must be named "key" and it has to be "colx" where x is the column number. For example, the key of the third column must be "col3".
 <br/>The attribute for "name" is a string and can be freely chosen.
 ```json

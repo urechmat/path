@@ -4,7 +4,7 @@
         <span>Value: </span><span style="font-weight: bold;">{{field.value}}</span>
     </div>
     <div>
-        <input type="range" min="{{field.min}}" max="{{field.max}}" step="{{field.step}}" [(ngModel)]="field.value" class="slider" id="myRange">
+        <input type="range" [min]="field.min" [max]="field.max" [step]="field.step" [(ngModel)]="field.value" class="slider" id="myRange">
     </div>
     <div class="slider-box">
         <span>{{field.min}}</span> <span>{{field.max}}</span>
