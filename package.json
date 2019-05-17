@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
-  "name": "path-framework",
-  "version": "0.5.4",
+  "name": "path-framework-urechmat",
+  "version": "0.5.5",
   "description": "Path Application Framework",
   "keywords": [
     "GUI",
@@ -10,17 +10,17 @@
     "Rapid Application Development",
     "Rapid Application Manufacturing"
   ],
-  "homepage": "https://github.com/innovad/path",
+  "homepage": "https://github.com/urechmat/path",
   "bugs": {
-    "url": "https://github.com/innovad/path/issues"
+    "url": "https://github.com/urechmat/path/issues"
   },
   "license": "LGPL-3.0",
   "author": {
-    "name": "Adrian Moser"
+    "name": "Matthias Urech"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/innovad/path.git"
+    "url": "https://github.com/urechmat/path.git"
   },
   "engines": {
     "node": "8.12.0",
