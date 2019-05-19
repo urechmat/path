@@ -16,9 +16,14 @@ Path Framework is developed at <a href="https://www.zhaw.ch/de/sml/institute-zen
 
 ## Live Example
 Live example on Heroku Free (please wait for wakeup): https://path-example.herokuapp.com/<br/>
+Note: This is the live example without the new components, which were created in the bachelor thesis.
+
 Source code: https://github.com/innovad/path-example
 
 ## QuickStart
+Note: This is the live example without the new components, which were created in the bachelor thesis.
+To test the application with the new components you need to follow the "Path Framework Development" guide below.
+
 
 Run a Path example application with 4 steps:
 * Clone the Path example from https://github.com/innovad/path-example
@@ -739,8 +744,8 @@ Read this chapter if you want to contribute to the Path Framework. If you only w
 * Create a directory where you will put your development code
 * Clone the framework and the example application in two separate folders inside this directory:
 ```
-git clone https://github.com/innovad/path.git
-git clone https://github.com/innovad/path-example.git
+git clone https://github.com/urechmat/path.git
+git clone https://github.com/urechmat/path-example.git
 ```
 * Run npm install on both projects (path and path-example)
 * Unfortunately we cannot use npm link to create a local dependency from path-example to path since it is not supported by TypeScript/Angular. We use npm-link-copy to make path-example use our local path project:
