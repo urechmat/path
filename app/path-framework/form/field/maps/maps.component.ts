@@ -50,14 +50,6 @@ export class Maps extends ValueField<any> {
         }
     }
 
-    zoomIn(map) {
-        map.setZoom(map.getZoom() + 1);
-    }
-
-    zoomOut(map) {
-        map.setZoom(map.getZoom() - 1);
-    }
-
     clear() {
         this._overlays = [];
         this.value = [];

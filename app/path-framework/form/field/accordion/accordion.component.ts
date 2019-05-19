@@ -1,10 +1,6 @@
 import {Component, Input, Output} from "@angular/core";
 import {ValueField} from "../value-field";
-import {Message} from "primeng/components/common/api";
 import {MessageService} from "primeng/components/common/messageservice";
-import {IForm} from "../../../pathinterface";
-import {TranslationService} from "../../../service/translation.service";
-import {mod} from "ngx-bootstrap/chronos/utils";
 
 @Component({
     selector: "path-accordion",
@@ -46,10 +42,6 @@ export class Accordion extends ValueField<any> {
 
     get accordionEntries(): AccordionEntry[] {
         return this._accordionEntries;
-    }
-
-    set accordionEntries(value: AccordionEntry[]) {
-        this._accordionEntries = value;
     }
 
 }

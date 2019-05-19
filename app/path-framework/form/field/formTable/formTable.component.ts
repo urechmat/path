@@ -18,13 +18,11 @@ export class FormTable extends ValueField<any> {
     private _listOfHeader: any[] = [];
     private _scrollable: boolean;
 
-    private _entries: TableEntry[] = [];
     private _selectedEntries: TableEntry[] = [];
 
     private _tableEntry: TableEntry;
 
     private _title: string;
-    private _readString: string;
     private _sorting: boolean;
 
     private _counter: number;
@@ -109,14 +107,6 @@ export class FormTable extends ValueField<any> {
         this._sorting = value;
     }
 
-    get readString(): string {
-        return this._readString;
-    }
-
-    set readString(value: string) {
-        this._readString = value;
-    }
-
     get title(): string {
         return this._title;
     }
@@ -141,28 +131,8 @@ export class FormTable extends ValueField<any> {
         this._tableEntry = value;
     }
 
-    get entries(): TableEntry[] {
-        return this._entries;
-    }
-
-    set entries(value: TableEntry[]) {
-        this._entries = value;
-    }
-
-    get listOfData(): any[] {
-        return this._listOfData;
-    }
-
-    set listOfData(value: any[]) {
-        this._listOfData = value;
-    }
-
     get listOfHeader(): any[] {
         return this._listOfHeader;
-    }
-
-    set listOfHeader(value: any[]) {
-        this._listOfHeader = value;
     }
 
     get scrollable(): boolean {
