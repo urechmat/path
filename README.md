@@ -21,8 +21,7 @@ Note: This is the live example without the new components, which were created in
 Source code: https://github.com/innovad/path-example
 
 ## QuickStart
-Note: This is the live example without the new components, which were created in the bachelor thesis.
-To test the application with the new components you need to follow the "Path Framework Development" guide below.
+Note: To test the application with the new components you need to follow the "Path Framework Development" guide below.
 
 
 Run a Path example application with 4 steps:
